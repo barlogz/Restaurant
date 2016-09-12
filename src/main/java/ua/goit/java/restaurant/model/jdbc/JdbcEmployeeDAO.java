@@ -9,10 +9,7 @@ import ua.goit.java.restaurant.model.Employee;
 import ua.goit.java.restaurant.model.EmployeeDAO;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +45,20 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
 
     @Override
     public Employee findByName(String firstName) {
-        throw new NotImplementedException();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM employee WHERE FIRST_NAME = ?")) {
+            statement.setString(1, firstName);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return createEmployee(resultSet);
+            } else {
+                throw new RuntimeException("cannot find employee with name " + firstName);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("Exception occurred while connecting to BD " + /*url, */e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

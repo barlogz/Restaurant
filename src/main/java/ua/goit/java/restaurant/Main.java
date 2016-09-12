@@ -22,7 +22,8 @@ public class Main {
     }
 
     private void start() {
-        System.out.println(employeeController.findAllEmployees());
+        System.out.println(employeeController.findEmployeeByName("Antonio"));
+//        System.out.println(employeeController.findAllEmployees());
     }
 
     public void setEmployeeController(EmployeeController employeeController) {
