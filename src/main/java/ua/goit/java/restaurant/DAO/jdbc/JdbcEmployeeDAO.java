@@ -1,4 +1,4 @@
-package ua.goit.java.restaurant.model.jdbc;
+package ua.goit.java.restaurant.DAO.jdbc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ua.goit.java.restaurant.model.Employee;
-import ua.goit.java.restaurant.model.EmployeeDAO;
+import ua.goit.java.restaurant.DAO.EmployeeDAO;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -23,18 +23,18 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(JdbcEmployeeDAO.class);
 
     @Override
-    public Employee add(Employee employee) {
+    public void add(Employee employee) {
         throw new NotImplementedException();
     }
 
 
     @Override
-    public Employee deleteById(int id) {
+    public void deleteById(int id) {
         throw new NotImplementedException();
     }
 
     @Override
-    public Employee deleteByNameAndSurname(String firstName, String lastName) {
+    public void deleteByNameAndSurname(String firstName, String lastName) {
         throw new NotImplementedException();
     }
 
@@ -62,8 +62,13 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
     }
 
     @Override
+    public Employee findByID(int id) {
+        throw new NotImplementedException();
+    }
+
+    @Override
     @Transactional(propagation = Propagation.MANDATORY)
-    public List<Employee> findAll() {
+    public List findAll() {
         List<Employee> result = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
@@ -89,6 +94,11 @@ public class JdbcEmployeeDAO implements EmployeeDAO {
         employee.setBirthday(resultSet.getDate("BIRTHDAY"));
         employee.setSalary(resultSet.getInt("SALARY"));
         return employee;
+    }
+
+    @Override
+    public void remove(Employee employee) {
+        throw new NotImplementedException();
     }
 
     public void setDataSource(DataSource dataSource) {

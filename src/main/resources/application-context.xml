@@ -6,6 +6,19 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
 
+    <bean id="main" class="ua.goit.java.restaurant.Main">
+        <property name="employeeController" ref="employeeController"/>
+    </bean>
+
+    <bean id="employeeController" class="ua.goit.java.restaurant.controller.EmployeeController">
+        <property name="employeeDAO" ref="employeeDAO"/>
+    </bean>
+
+    <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.hibernate.HEmployeeDAO">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
     <bean class="ua.goit.java.restaurant.Main" id="main">
@@ -17,7 +30,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
         <property name="employeeDAO" ref="employeeDAO"/>
     </bean>
 
-    <bean id="employeeDAO" class="ua.goit.java.restaurant.model.jdbc.JdbcEmployeeDAO">
+    <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.jdbc.JdbcEmployeeDAO">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
@@ -38,5 +51,6 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
     </bean>
+-->
 
 </beans>

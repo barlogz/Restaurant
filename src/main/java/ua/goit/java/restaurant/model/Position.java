@@ -1,4 +1,4 @@
-package ua.goit.java.restaurant.model.hibernate;
+package ua.goit.java.restaurant.model;
 
 public enum Position {
 
