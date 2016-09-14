@@ -14,6 +14,7 @@ public class DishController {
 
     @Transactional
     public void addDish() {
+        System.out.println("In addDish ");
         Dish plov = new Dish();
         plov.setName("Plov");
         plov.setCategoryId(1);

@@ -5,7 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dishes")
+@Table(name = "dish")
 public class Dish {
 
     @Id
@@ -25,40 +25,6 @@ public class Dish {
 
     @Column(name = "weight")
     private int weight;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Dish dish = (Dish) o;
-
-        if (categoryId != dish.categoryId) return false;
-        if (price != dish.price) return false;
-        if (weight != dish.weight) return false;
-        return name != null ? name.equals(dish.name) : dish.name == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = categoryId;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + price;
-        result = 31 * result + weight;
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Dish{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", weight=" + weight +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -98,5 +64,39 @@ public class Dish {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dish dish = (Dish) o;
+
+        if (categoryId != dish.categoryId) return false;
+        if (price != dish.price) return false;
+        if (weight != dish.weight) return false;
+        return name != null ? name.equals(dish.name) : dish.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = categoryId;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + price;
+        result = 31 * result + weight;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "id=" + id +
+                ", categoryId=" + categoryId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", weight=" + weight +
+                '}';
     }
 }

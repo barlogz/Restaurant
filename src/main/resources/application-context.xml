@@ -4,19 +4,23 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+       default-autowire="byName">
+
 
     <bean id="main" class="ua.goit.java.restaurant.Main">
-        <property name="employeeController" ref="employeeController"/>
+        <!--<property name="employeeController" ref="employeeController"/>-->
     </bean>
 
     <bean id="employeeController" class="ua.goit.java.restaurant.controller.EmployeeController">
-        <property name="employeeDAO" ref="employeeDAO"/>
+        <!--<property name="employeeDAO" ref="employeeDAO"/>-->
     </bean>
+    <bean id="dishController" class="ua.goit.java.restaurant.controller.DishController"/>
 
     <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.hibernate.HEmployeeDAO">
-        <property name="sessionFactory" ref="sessionFactory"/>
+        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
     </bean>
+    <bean id="dishDAO" class="ua.goit.java.restaurant.DAO.hibernate.HDishDAO"/>
 
     <!--
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
