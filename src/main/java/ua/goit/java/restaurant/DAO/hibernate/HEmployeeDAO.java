@@ -2,6 +2,7 @@ package ua.goit.java.restaurant.DAO.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import ua.goit.java.restaurant.model.Employee;
 import ua.goit.java.restaurant.DAO.EmployeeDAO;
 
 import java.util.List;
+import java.util.Queue;
 
 public class  HEmployeeDAO implements EmployeeDAO {
 
@@ -43,8 +45,10 @@ public class  HEmployeeDAO implements EmployeeDAO {
 
     @Override
     public Employee findByName(String firstName) {
-        throw new NotImplementedException();
-
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select e from Employee e where e.firstName like :first_name");
+        query.setParameter("first_name", firstName);
+        return (Employee) query.uniqueResult();
     }
 
     @Override

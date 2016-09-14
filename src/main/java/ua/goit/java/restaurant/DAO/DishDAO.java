@@ -9,4 +9,6 @@ public interface DishDAO {
     void save(Dish dish);
 
     List<Dish> findAll();
+
+    Dish findByName(String name);
 }

@@ -14,7 +14,6 @@ public class DishController {
 
     @Transactional
     public void addDish() {
-        System.out.println("In addDish ");
         Dish plov = new Dish();
         plov.setName("Plov");
         plov.setCategoryId(1);
@@ -48,6 +47,12 @@ public class DishController {
     public List<Dish> getAllDishes() {
         return dishDAO.findAll();
     }
+
+    @Transactional
+    public Dish getDishByName(String name) {
+        return dishDAO.findByName(name);
+    }
+
 
     public void setDishDAO(DishDAO dishDAO) {
         this.dishDAO = dishDAO;
