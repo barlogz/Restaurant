@@ -48,7 +48,7 @@
 <img src="<c:url value="/resources/images/logo_small.jpg"/>" class="img-responsive center-block"/>
 <hr>
 
-<nav class="navbar navbar-light" style="background-color: #f3eca5">
+<nav class="navbar navbar-light" style="background-color: #f3eca5; border: solid #658eff">
     <ul class="nav navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="/">
@@ -58,12 +58,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/schema/tables">
-                <h4>Схема ресторана</h4>
+                <h4>Pizzeria scheme</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/employees/list">
-                <h4>Наш персонал</h4>
+                <h4>Our Staff</h4>
             </a>
         </li>
         <li class="nav-item">

@@ -5,12 +5,12 @@
 <jsp:include page="../fragments/header.jsp"/>
 <body>
 
-<div style="margin-left: 20px">
-    <table style="width: 100%">
-        <tr style="vertical-align:top">
+<div style="margin-left: 30px">
+    <table style="width: 101%">
+        <tr style="vertical-align:top" align="center">
             <td>
-                <h2>Схема ресторана</h2>
-                <img src="<c:url value="/resources/images/shema_stolov.jpg"/>">
+                <h2 style="color: #0b0776; vertical-align:middle">Pizzeria scheme</h2>
+                <img src="<c:url value="/resources/images/table_booking_scheme.jpg"/>" align="center">
             </td>
         </tr>
     </table>

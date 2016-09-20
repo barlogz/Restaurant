@@ -9,7 +9,7 @@
 
 <div style="width: 50%; margin-left: 20px">
 
-<h1 style="text-align: center; color: #23527c">Employees our's restaurant</h1>
+<h1 style="text-align: center; color: #23527c">Our Staff</h1>
 
 <spring:url value="/employees/add" var="addUrl" />
 <button class="btn btn-primary" onclick="location.href='${addUrl}'">Add Employee</button>
@@ -19,8 +19,8 @@
     <table border="1" style="align-items: center" class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Surname</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Position</th>
             <th></th>
             <th></th>
@@ -29,8 +29,8 @@
 
         <c:forEach items="${employees}" var="employee">
             <tr>
-                <td><a href="/employees/show/${employee.name}">${employee.name}</a></td>
-                <td>${employee.surname}</td>
+                <td><a href="/employees/show/${employee.firstName}">${employee.firstName}</a></td>
+                <td>${employee.lastName}</td>
                 <td>${employee.position}</td>
                 <td style="align-items: center; width: 20px">
                     <spring:url value="/employees/${employee.id}/delete" var="deleteUrl"/>

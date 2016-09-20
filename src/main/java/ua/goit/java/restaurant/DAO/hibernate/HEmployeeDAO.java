@@ -35,8 +35,8 @@ public class  HEmployeeDAO implements EmployeeDAO {
     @Transactional
     public Employee findBySurname(String lastName) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select e from Employee e where e.lastName like :last_name");
-        query.setParameter("last_name", lastName);
+        Query query = session.createQuery("select e from Employee e where e.lastName like :lastName");
+        query.setParameter("lastName", lastName);
         return (Employee) query.uniqueResult();
     }
 
@@ -44,8 +44,8 @@ public class  HEmployeeDAO implements EmployeeDAO {
     @Transactional
     public Employee findByName(String firstName) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select e from Employee e where e.firstName like :first_name");
-        query.setParameter("first_name", firstName);
+        Query query = session.createQuery("SELECT e FROM Employee e WHERE e.firstName like :firstName");
+        query.setParameter("firstName", firstName);
         return (Employee) query.uniqueResult();
     }
 

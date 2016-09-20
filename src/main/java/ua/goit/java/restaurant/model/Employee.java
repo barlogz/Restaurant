@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -50,7 +50,7 @@ public class Employee implements Serializable{
     public Employee() {
     }
 
-    public Employee(Position position, String firstName, String lastName, Date birthday, int salary, String phoneNumber) {
+    public Employee(Position position, String firstName, String lastName, Date birthday, Integer salary, String phoneNumber) {
         this.position = position;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,20 +63,12 @@ public class Employee implements Serializable{
         return (this.Id == null);
     }
 
-    public int getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(int id) {
-        this.Id = id;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setId(Integer id) {
+        Id = id;
     }
 
     public String getFirstName() {
@@ -95,6 +87,14 @@ public class Employee implements Serializable{
         this.lastName = lastName;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
     public Date getBirthday() {
         return birthday;
     }
@@ -103,11 +103,11 @@ public class Employee implements Serializable{
         this.birthday = birthday;
     }
 
-    public int getSalary() {
+    public Integer getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(Integer salary) {
         this.salary = salary;
     }
 

@@ -8,8 +8,8 @@
 <div style="width: 50%; margin-left: 20px">
     <table border="1" style="align-items: center" class="table table-striped">
         <tr>
-            <th>Name</th>
-            <th>Surname</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Birthday</th>
             <th>Phone Number</th>
             <th>Position</th>
@@ -17,8 +17,8 @@
         </tr>
 
         <tr>
-            <td>${employee.name}</td>
-            <td>${employee.surname}</td>
+            <td>${employee.firstName}</td>
+            <td>${employee.lastName}</td>
             <td>${employee.birthday}</td>
             <td>${employee.phoneNumber}</td>
             <td>${employee.position}</td>

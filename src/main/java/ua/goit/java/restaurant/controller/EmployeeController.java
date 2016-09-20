@@ -34,7 +34,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "employees/list", method = RequestMethod.POST)
-    public String saveOrUpdateEmployee(@ModelAttribute("employeeform")
+    public String saveOrUpdateEmployee(@ModelAttribute("employeeForm")
                                            @Validated Employee employee, BindingResult result) {
         if (result.hasErrors()) {
             return "employees/employeeform";
@@ -53,7 +53,7 @@ public class EmployeeController {
     public ModelAndView showEmployee(@PathVariable String employeeName) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("employee", employeeService.findByName(employeeName));
-        modelAndView.setViewName("/employee/show");
+        modelAndView.setViewName("/employees/show");
         return modelAndView;
     }
 
@@ -78,7 +78,7 @@ public class EmployeeController {
             employee.setPosition(Position.ADMINISTRATOR);
             employee.setSalary(1000000);
 
-            model.addAttribute("employeeform", employee);
+            model.addAttribute("employeeForm", employee);
             return "/employees/employeeform";
     }
 
@@ -88,7 +88,7 @@ public class EmployeeController {
         LOGGER.debug("showUpdateEmployeeform() : {}", id);
 
         Employee employee = employeeService.findByID(id);
-        model.addAttribute("employeeform", employee);
+        model.addAttribute("employeeForm", employee);
         return "/employees/employeeform";
     }
  }

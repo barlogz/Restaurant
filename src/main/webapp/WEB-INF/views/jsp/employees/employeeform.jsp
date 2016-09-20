@@ -28,22 +28,22 @@
 
         <form:hidden path="id" />
 
-        <spring:bind path="name">
+        <spring:bind path="firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Name</label>
+                <label class="col-sm-2 control-label">First Name</label>
                 <div class="col-sm-10">
-                    <form:input path="name" type="text" class="form-control " id="name" placeholder="Name" />
-                    <form:errors path="name" class="control-label" />
+                    <form:input path="firstName" type="text" class="form-control " id="firstName" placeholder="firstName" />
+                    <form:errors path="firstName" class="control-label" />
                 </div>
             </div>
         </spring:bind>
 
-        <spring:bind path="surname">
+        <spring:bind path="lastName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Surname</label>
+                <label class="col-sm-2 control-label">Last Name</label>
                 <div class="col-sm-10">
-                    <form:input path="surname" class="form-control" id="surname" placeholder="Surname" />
-                    <form:errors path="surname" class="control-label" />
+                    <form:input path="lastName" class="form-control" id="lastName" placeholder="lastName" />
+                    <form:errors path="lastName" class="control-label" />
                 </div>
             </div>
         </spring:bind>
