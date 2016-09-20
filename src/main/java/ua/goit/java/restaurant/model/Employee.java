@@ -1,84 +1,82 @@
 package ua.goit.java.restaurant.model;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
-public class Employee {
-//
-//    private Long id;
-//
-//    private String name;
-//
-//    private String surname;
-//
-//    private String phoneNumber;
-//
-//    private Position position;
-//
-//    private Float salary;
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Employee implements Serializable{
 
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
-    private int id;
+    private Integer Id;
 
-    @Column(name = "position_id")
-    private int positionId;
-
-
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "position")
-//    @JoinColumn(name = "positions_id")
-//    /**!!!!!!!!!!!!!!!!!!NEW ONE!!!!!!!!!!!**/
-//    private Position position;
-
-    @Column(name = "last_name")
-    private String lastName;
+//    @Column(name = "position_id")
+//    private int positionId;
 
     @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "position")
+    private Position position;
+
     @Column(name = "birthday")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Type(type = "date")
     private Date birthday;
 
     @Column(name = "salary")
-    private int salary;
+    private Integer salary;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+//    for mapping
+    @OneToMany(mappedBy = "waiter", cascade = CascadeType.ALL)
+    private List<Orders> orders;
+
+    public Employee() {
+    }
+
+    public Employee(Position position, String firstName, String lastName, Date birthday, int salary, String phoneNumber) {
+        this.position = position;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.salary = salary;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isNew() {
+        return (this.Id == null);
+    }
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
-    public int getPositionId() {
-        return positionId;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPositionId(int positionId) {
-        this.positionId = positionId;
-    }
-
-//    public Position getPosition() {
-//        return position;
-//    }
-//
-//    public void setPosition(Position position) {
-//        this.position = position;
-//    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public String getFirstName() {
@@ -87,6 +85,14 @@ public class Employee {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Date getBirthday() {
@@ -105,6 +111,22 @@ public class Employee {
         this.salary = salary;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -112,33 +134,40 @@ public class Employee {
 
         Employee employee = (Employee) o;
 
-        if (positionId != employee.positionId) return false;
-        if (salary != employee.salary) return false;
-        if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
+        if (position != employee.position) return false;
         if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
-        return birthday != null ? birthday.equals(employee.birthday) : employee.birthday == null;
+        if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
+        if (birthday != null ? !birthday.equals(employee.birthday) : employee.birthday != null) return false;
+        if (salary != null ? !salary.equals(employee.salary) : employee.salary != null) return false;
+        if (phoneNumber != null ? !phoneNumber.equals(employee.phoneNumber) : employee.phoneNumber != null)
+            return false;
+        return orders != null ? orders.equals(employee.orders) : employee.orders == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = positionId;
-        result = 31 * result + lastName.hashCode();
-        result = 31 * result + firstName.hashCode();
-        result = 31 * result + birthday.hashCode();
-        result = 31 * result + salary;
+        int result = position != null ? position.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
+        result = 31 * result + (salary != null ? salary.hashCode() : 0);
+        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
-                ", positionId=" + positionId +
-                ", lastName='" + lastName + '\'' +
+                "Id=" + Id +
                 ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position=" + position +
                 ", birthday=" + birthday +
                 ", salary=" + salary +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", orders=" + orders +
                 '}';
     }
 }

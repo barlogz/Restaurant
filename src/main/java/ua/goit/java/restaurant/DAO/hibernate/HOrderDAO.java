@@ -1,7 +1,7 @@
 package ua.goit.java.restaurant.DAO.hibernate;
 
 import org.hibernate.SessionFactory;
-import ua.goit.java.restaurant.DAO.OrderDAO;
+import ua.goit.java.restaurant.DAO.interfaces.OrderDAO;
 import ua.goit.java.restaurant.model.Orders;
 
 import java.util.List;

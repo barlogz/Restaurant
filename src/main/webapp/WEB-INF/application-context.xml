@@ -8,20 +8,17 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
        default-autowire="byName">
 
 
-    <bean id="main" class="ua.goit.java.restaurant.Main">
-        <!--<property name="employeeController" ref="employeeController"/>-->
-    </bean>
+    <!--<bean id="main" class="ua.goit.java.restaurant.Main"/>-->
 
-    <bean id="employeeController" class="ua.goit.java.restaurant.controller.EmployeeController">
-        <!--<property name="employeeDAO" ref="employeeDAO"/>-->
-    </bean>
-    <bean id="dishController" class="ua.goit.java.restaurant.controller.DishController"/>
-    <bean id="orderController" class="ua.goit.java.restaurant.controller.OrderController"/>
+    <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.hibernate.HEmployeeDAO"/>
+    <bean id="employeeService" class="ua.goit.java.restaurant.service.impl.EmployeeServiceImpl"/>
 
-    <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.hibernate.HEmployeeDAO">
-        <!--<property name="sessionFactory" ref="sessionFactory"/>-->
-    </bean>
     <bean id="dishDAO" class="ua.goit.java.restaurant.DAO.hibernate.HDishDAO"/>
+    <!--<bean id="dishService" class="ua.goit.java.restaurant.service.impl.DishServiceImpl"/>-->
+
+    <!--!!!!!!!!!!!!!!!-->
+    <bean id="orderController" class="ua.goit.java.restaurant.controller.OrderController"/>
+    <!--!!!!!!!!!!!!!!!-->
     <bean id="orderDAO" class="ua.goit.java.restaurant.DAO.hibernate.HOrderDAO"/>
 
     <!--
@@ -60,3 +57,4 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 -->
 
 </beans>
+

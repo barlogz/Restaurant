@@ -11,7 +11,7 @@
         <property name="location" value="classpath:jdbc.properties"/>
     </bean>
 
-    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver.class}"/>
         <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="user" value="${jdbc.user}"/>
@@ -25,14 +25,17 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="ua.goit.java.restaurant.model"/>
         <property name="hibernateProperties">
-            <value>
-                hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-            </value>
+            <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
+            <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
         </property>
     </bean>
 
     <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
 
 </beans>

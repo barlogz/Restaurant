@@ -1,9 +1,9 @@
 package ua.goit.java.restaurant.controller;
 
 import org.springframework.transaction.annotation.Transactional;
-import ua.goit.java.restaurant.DAO.DishDAO;
-import ua.goit.java.restaurant.DAO.EmployeeDAO;
-import ua.goit.java.restaurant.DAO.OrderDAO;
+import ua.goit.java.restaurant.DAO.interfaces.DishDAO;
+import ua.goit.java.restaurant.DAO.interfaces.EmployeeDAO;
+import ua.goit.java.restaurant.DAO.interfaces.OrderDAO;
 import ua.goit.java.restaurant.model.Dish;
 import ua.goit.java.restaurant.model.Orders;
 

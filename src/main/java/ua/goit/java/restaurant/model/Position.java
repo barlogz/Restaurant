@@ -1,6 +1,8 @@
 package ua.goit.java.restaurant.model;
 
-public enum Position {
+import java.io.Serializable;
+
+public enum Position implements Serializable {
 
     DIRECTOR,
     ADMINISTRATOR,

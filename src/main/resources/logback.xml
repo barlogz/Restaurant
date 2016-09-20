@@ -10,12 +10,10 @@
         </layout>
     </appender>
 
-    <appender name="file"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>log/restaurant.log</file>
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>target/log/restaurant.log</file>
         <prudent>true</prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>restaurant-%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
         <encoder>
             <Pattern>%d{HH:mm:ss.SSS} %5level [%thread] %logger{36} - %msg%n</Pattern>
@@ -36,5 +34,7 @@
         <appender-ref ref="console"/>
         <appender-ref ref="file"/>
     </root>
+
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
 
 </configuration>

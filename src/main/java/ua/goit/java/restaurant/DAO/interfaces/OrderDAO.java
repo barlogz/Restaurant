@@ -1,4 +1,4 @@
-package ua.goit.java.restaurant.DAO;
+package ua.goit.java.restaurant.DAO.interfaces;
 
 import ua.goit.java.restaurant.model.Orders;
 

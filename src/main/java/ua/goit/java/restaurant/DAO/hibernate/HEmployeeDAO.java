@@ -8,42 +8,40 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import ua.goit.java.restaurant.model.Employee;
-import ua.goit.java.restaurant.DAO.EmployeeDAO;
+import ua.goit.java.restaurant.DAO.interfaces.EmployeeDAO;
 
 import java.util.List;
-import java.util.Queue;
 
 public class  HEmployeeDAO implements EmployeeDAO {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(HEmployeeDAO.class);
 
     private SessionFactory sessionFactory;
 
     @Override
     @Transactional
-    public void add(Employee employee) {
+    public void save(Employee employee) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(employee);
+        session.saveOrUpdate(employee);
     }
 
     @Override
-    public void deleteById(int id) {
-        throw new NotImplementedException();
+    public void remove(Employee employee) {
+        sessionFactory.getCurrentSession().delete(employee);
     }
 
     @Override
-    public void deleteByNameAndSurname(String firstName, String lastName) {
-        throw new NotImplementedException();
+    public void removeAll() { sessionFactory.getCurrentSession().createQuery("delete from Employee").executeUpdate(); }
 
+    @Override
+    @Transactional
+    public Employee findBySurname(String lastName) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select e from Employee e where e.lastName like :last_name");
+        query.setParameter("last_name", lastName);
+        return (Employee) query.uniqueResult();
     }
 
     @Override
-    public Employee findByNameAndSurname(String firstName, String lastName) {
-        throw new NotImplementedException();
-
-    }
-
-    @Override
+    @Transactional
     public Employee findByName(String firstName) {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select e from Employee e where e.firstName like :first_name");
@@ -52,20 +50,20 @@ public class  HEmployeeDAO implements EmployeeDAO {
     }
 
     @Override
-    public Employee findByID(int id) {
-        throw new NotImplementedException();
-
+    @Transactional
+    public Employee findByID(Integer id) {
+        Employee result = sessionFactory.getCurrentSession().get(Employee.class, id);
+        if (result==null) {
+            throw new RuntimeException("There is no such Employee with id = " + id);
+        }
+        return result;
     }
 
     @Override
+    @Transactional
     public List<Employee> findAll() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("select e from Employee e").list();
-    }
-
-    @Override
-    public void remove(Employee employee) {
-        sessionFactory.getCurrentSession().delete(employee);
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

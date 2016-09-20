@@ -3,7 +3,7 @@ package ua.goit.java.restaurant.DAO.hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ua.goit.java.restaurant.DAO.DishDAO;
+import ua.goit.java.restaurant.DAO.interfaces.DishDAO;
 import ua.goit.java.restaurant.model.Dish;
 
 import java.util.List;
