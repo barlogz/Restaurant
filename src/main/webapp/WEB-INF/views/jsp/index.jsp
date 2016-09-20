@@ -5,40 +5,41 @@
 <jsp:include page="../jsp/fragments/header.jsp"/>
 <body>
 
-<div style="margin-left: 20px">
-    <table style="width: 100%">
+<div style="margin-left: 15px">
+    <table style="width: auto">
         <tr style="vertical-align:top">
             <td>
-                <img src="<c:url value="/resources/images/biglogo2.jpg"/>">
+                <img src="<c:url value="/resources/images/logo_pizza.jpg"/>">
             </td>
 
-            <td style="margin-top: 20px">
-                <div style="margin-top: 20px">
-                    <div style="text-align: center">
-                        <img src="<c:url value="/resources/images/smalllogo.jpg"/>">
+            <td style="margin-top: 25px">
+                <div style="margin-top: 25px">
+                    <div style="text-align: right">
                     </div>
-                    <h4 style="width: 480px">
-                        <p style="text-align: justify">Ресторан «CENRAARCHY» расположенный в самом сердце Киева. Это
-                            необыкновенно уютное место для Ваших встреч, где Вы сможете отлично отдохнуть, позабыть о
-                            серых буднях и просто весело провести время в кругу своих родных, друзей и коллег.</p>
-                        <p style="text-align: justify">Презентабельный и стильный дизайн, интеллигентная атмосфера,
-                            изысканное меню и демократичные цены неприменно приятно удивят и порадуют гостей нашего
-                            ресторана. Но это еще не все, ведь наш главный конек - кухня! У нас действительно очень
-                            вкусно кормят!</p>
-                        <p style="text-align: justify">В нашем уютном ресторане создано все для того, чтобы Вы провели
-                            вечер в теплой компании, без лишнего пафоса и суеты. Здесь все лаконично, легко и
-                            ненавязчиво! Мы предлагаем Вам завести новую страницу Ваших семейных традиций: ужинать в
-                            ресторане при свечах, отмечать семейные праздники за своим любимым столиком, радоваться
-                            успехам друг друга под звуки вечной музыки!</p>
+                    <h4 style="width: 640px">
+                        <p style="text-align: justify"> Una Pizza Napoletana opened its doors in Ukraine in 1992. A
+                            classical Italian pizza retains its taste for only 15 minutes after it’s prepared.
+                            That’s why restaurants which specialise in making thin crust pizza often don’t have
+                            home delivery of their products.</p>
+                        <p style="text-align: justify">  Because of our original recipes, which were developed by well
+                            known chefs in Italy, Canada and Ukraine, Vesuvio Pizza is the best.  Our pizzas are great,
+                            whether eaten fresh or even out of the fridge.</p>
+                        <p style="text-align: justify">  Our first pizzeria opened in the summer of 1994.  Located at
+                            Reitarska 25, it is near Kyiv’s historical sites – the St. Sophia Cathedral and the
+                            Golden Gates.</p>
+                        <p style="text-align: justify">  Una Pizza Napoletana is a favourite of Kyivans and visitors to
+                            this city, who appreciate our Italian kitchen, good music and great service.  And even
+                            though a great deal has changed over the 20 years since we first started Vesuvio, our
+                            quality continues to retain its high level.</p>
                     </h4>
                     <table>
                         <tr>
                             <td>
-                                <img src="<c:url value="/resources/images/booking.png"/>">
+                                <img src="<c:url value="/resources/images/book_a_table.jpg"/>">
                             </td>
                             <td>
-                                <h4 style="color: #761c19">
-                                    <img src="<c:url value="/resources/images/phone24_2.jpg"/>"> (044) 255-25-25
+                                <h4 style="color: #0b0776">
+                                    (044) 123-45-54
                                 </h4>
                             </td>
                         </tr>

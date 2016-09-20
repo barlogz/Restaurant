@@ -67,6 +67,7 @@ public class InitDB {
 //        volodymyr.setSalary(200000);
 //        employeeDAO.save(volodymyr);
 
+        System.out.println("*** INIT DB DONE ***");
 
     }
 

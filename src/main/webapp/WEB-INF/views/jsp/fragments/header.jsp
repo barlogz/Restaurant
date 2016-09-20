@@ -13,13 +13,13 @@
 
     <style>
         .error {
-            color: #ff0000;
+            color: #ffa91b;
         }
 
         .errorblock {
             color: #000;
             background-color: #ffEEEE;
-            border: 3px solid #ff0000;
+            border: 3px solid #ffce29;
             padding: 8px;
             margin: 16px;
         }
@@ -45,14 +45,14 @@
 </nav>--%>
 
 
-<img src="<c:url value="/resources/images/logo4.jpg"/>" class="img-responsive center-block"/>
+<img src="<c:url value="/resources/images/logo_small.jpg"/>" class="img-responsive center-block"/>
 <hr>
 
-<nav class="navbar navbar-light" style="background-color: #c4e3f3">
+<nav class="navbar navbar-light" style="background-color: #f3eca5">
     <ul class="nav navbar-nav">
         <li class="nav-item active">
             <a class="nav-link" href="/">
-                <h4>Главная</h4>
+                <h4>Main</h4>
                 <span class="sr-only">(current)</span>
             </a>
         </li>
