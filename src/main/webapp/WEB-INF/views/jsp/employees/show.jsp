@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="../fragments/header.jsp"/>
@@ -6,6 +7,7 @@
 <body>
 
 <div style="width: 50%; margin-left: 20px">
+    <h1 style="text-align: center; color: #23527c">Detailed staff information about: ${employee.firstName} ${employee.lastName} </h1>
     <table border="1" style="align-items: center" class="table table-striped">
         <tr>
             <th>First Name</th>
@@ -27,6 +29,11 @@
 
     </table>
 
+</div>
+
+<div style="margin-left: 20%">
+    <spring:url value="/employees/list" var="addUrl2" />
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of staff</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp"/>

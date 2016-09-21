@@ -30,11 +30,11 @@ public class Dish {
 
     //for mapping
     @JsonIgnore
-    @ManyToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "dishes", cascade = CascadeType.ALL)
     private List<Order> order;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "dishes", cascade = CascadeType.ALL)
     private List<Menu> menu;
 
     @JsonIgnore
@@ -116,6 +116,14 @@ public class Dish {
 
     public void setMenu(List<Menu> menu) {
         this.menu = menu;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     @Override

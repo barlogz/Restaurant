@@ -29,13 +29,13 @@ public class  HEmployeeDAO implements EmployeeDAO {
     }
 
     @Override
-    public void removeAll() { sessionFactory.getCurrentSession().createQuery("delete from Employee").executeUpdate(); }
+    public void removeAll() { sessionFactory.getCurrentSession().createQuery("DELETE FROM Employee").executeUpdate(); }
 
     @Override
     @Transactional
     public Employee findBySurname(String lastName) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select e from Employee e where e.lastName like :lastName");
+        Query query = session.createQuery("SELECT e FROM Employee e WHERE e.lastName LIKE :lastName");
         query.setParameter("lastName", lastName);
         return (Employee) query.uniqueResult();
     }
@@ -44,8 +44,19 @@ public class  HEmployeeDAO implements EmployeeDAO {
     @Transactional
     public Employee findByName(String firstName) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("SELECT e FROM Employee e WHERE e.firstName like :firstName");
+        Query query = session.createQuery("SELECT e FROM Employee e WHERE e.firstName LIKE :firstName");
         query.setParameter("firstName", firstName);
+        return (Employee) query.uniqueResult();
+    }
+
+    @Override
+    @Transactional
+    public Employee findByNameAndSurname(String firstName, String lastName) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("SELECT e FROM Employee e WHERE e.firstName LIKE :firstName " +
+                "AND e.lastName LIKE :lastName");
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
         return (Employee) query.uniqueResult();
     }
 

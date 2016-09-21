@@ -17,5 +17,7 @@ public interface EmployeeDAO {
 
     Employee findBySurname(String lastName);
 
+    Employee findByNameAndSurname(String firstName, String lastName);
+
     List<Employee> findAll();
 }

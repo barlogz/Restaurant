@@ -3,6 +3,7 @@ package ua.goit.java.restaurant.controller;
 import org.springframework.transaction.annotation.Transactional;
 import ua.goit.java.restaurant.DAO.interfaces.DishDAO;
 import ua.goit.java.restaurant.model.Dish;
+import ua.goit.java.restaurant.model.DishCategory;
 
 import java.util.HashSet;
 import java.util.List;
@@ -16,19 +17,19 @@ public class DishController {
     public void addDish() {
         Dish plov = new Dish();
         plov.setName("Plov");
-        plov.setCategoryId(1);
+        plov.setDishCategory(DishCategory.FIRST_DISHES);
         plov.setPrice(5);
         plov.setWeight(300);
 
         Dish salad = new Dish();
         salad.setName("Salad");
-        salad.setCategoryId(2);
+        salad.setDishCategory(DishCategory.SALADS);
         salad.setPrice(2);
         salad.setWeight(200);
 
         Dish potato = new Dish();
         potato.setName("Potato");
-        potato.setCategoryId(3);
+        potato.setDishCategory(DishCategory.FIRST_DISHES);
         potato.setPrice(3);
         potato.setWeight(100);
         Set<Dish> dishes = new HashSet<>(dishDAO.findAll());

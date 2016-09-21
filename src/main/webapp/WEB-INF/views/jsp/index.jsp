@@ -9,14 +9,13 @@
     <table style="width: auto">
         <tr style="vertical-align:top">
             <td>
-                <img src="<c:url value="/resources/images/logo_pizza.jpg"/>">
+                <img style="margin-right: 15px" src="<c:url value="/resources/images/logo_pizza.jpg"/>">
             </td>
-
             <td style="margin-top: 25px">
-                <div style="margin-top: 25px">
+                <div style="margin-top: 5px">
                     <div style="text-align: center">
                     </div>
-                    <h4 style="width: 640px">
+                    <h4 style="width: 620px">
                         <p style="text-align: justify"> &nbsp; Una Pizza Napoletana opened its doors in Ukraine in 1992. A
                             classical Italian pizza retains its taste for only 15 minutes after it’s prepared.
                             That’s why restaurants which specialise in making thin crust pizza often don’t have

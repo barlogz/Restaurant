@@ -20,7 +20,7 @@ public class Ingredient {
     private Warehouse warehouse;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "ingredients", cascade = CascadeType.ALL)
     private List<Dish> dishes;
 
     public Ingredient() {
