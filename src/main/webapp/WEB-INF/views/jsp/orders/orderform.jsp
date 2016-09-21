@@ -22,7 +22,7 @@
     <br/>
 
 
-    <spring:url value="/orders/list" var="orderActionUrl"/>
+    <spring:url value="/order/list" var="orderActionUrl"/>
 
     <form:form class="form-horizontal" method="post" modelAttribute="orderForm" action="${orderActionUrl}">
 

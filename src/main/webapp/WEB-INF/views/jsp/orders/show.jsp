@@ -35,7 +35,7 @@
                 <td>${dishes.weight}</td>
 
                 <td style="align-items: center; width: 20px">
-                    <spring:url value="/orders/${order.id}/deleteDish/${dishes.id}" var="deleteDishFromOrderUrl"/>
+                    <spring:url value="/order/${order.id}/deleteDish/${dishes.id}" var="deleteDishFromOrderUrl"/>
                     <a href="${deleteDishFromOrderUrl}">
                         <img src="<c:url value="/resources/images/garbage24.jpg"/>"/>
                     </a>
@@ -54,7 +54,7 @@
 
 <hr>
 
-<spring:url value="/orders/${order.id}/addDish" var="menuActionUrl"/>
+<spring:url value="/order/${order.id}/addDish" var="menuActionUrl"/>
 
 <form:form action="${menuActionUrl}" modelAttribute="dish" method="post">
 

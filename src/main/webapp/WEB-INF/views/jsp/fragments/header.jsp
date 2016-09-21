@@ -87,7 +87,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/orders/list">
+            <a class="nav-link" href="/order/list">
                 <h4>Заказы</h4>
             </a>
         </li>

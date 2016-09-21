@@ -17,7 +17,7 @@ public class Employee implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
-    private Integer Id;
+    private Integer id;
 
 //    @Column(name = "position_id")
 //    private int positionId;
@@ -45,7 +45,7 @@ public class Employee implements Serializable{
 
 //    for mapping
     @OneToMany(mappedBy = "waiter", cascade = CascadeType.ALL)
-    private List<Orders> orders;
+    private List<Order> orders;
 
     public Employee() {
     }
@@ -60,15 +60,15 @@ public class Employee implements Serializable{
     }
 
     public boolean isNew() {
-        return (this.Id == null);
+        return (this.id == null);
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -119,11 +119,11 @@ public class Employee implements Serializable{
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Orders> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Orders> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
@@ -160,7 +160,7 @@ public class Employee implements Serializable{
     @Override
     public String toString() {
         return "Employee{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position=" + position +

@@ -1,12 +1,12 @@
 package ua.goit.java.restaurant.DAO.interfaces;
 
-import ua.goit.java.restaurant.model.Orders;
+import ua.goit.java.restaurant.model.Order;
 
 import java.util.List;
 
 public interface OrderDAO {
 
-    void save(Orders orders);
+    void save(Order order);
 
-    List<Orders> findAllOrders();
+    List<Order> findAllOrders();
 }

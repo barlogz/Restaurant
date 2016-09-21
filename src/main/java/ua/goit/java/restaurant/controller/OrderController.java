@@ -5,7 +5,7 @@ import ua.goit.java.restaurant.DAO.interfaces.DishDAO;
 import ua.goit.java.restaurant.DAO.interfaces.EmployeeDAO;
 import ua.goit.java.restaurant.DAO.interfaces.OrderDAO;
 import ua.goit.java.restaurant.model.Dish;
-import ua.goit.java.restaurant.model.Orders;
+import ua.goit.java.restaurant.model.Order;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,17 +21,17 @@ public class OrderController {
 
     @Transactional
     public void createOrder(String waiterName, List<String> dishes, int tableNumber) {
-        Orders orders = new Orders();
-        orders.setWaiter(employeeDAO.findByName(waiterName));
-        orders.setDishes(createDishes(dishes));
-        orders.setTableNumber(tableNumber);
-        orders.setOrderDate(new Date());
+        Order order = new Order();
+        order.setWaiter(employeeDAO.findByName(waiterName));
+        order.setDishes(createDishes(dishes));
+        order.setTableNumber(tableNumber);
+        order.setOrderDate(new Date());
 
-        orderDAO.save(orders);
+        orderDAO.save(order);
     }
 
     @Transactional
-    public List<Orders> getAllOrders() {
+    public List<Order> getAllOrders() {
         return orderDAO.findAllOrders();
     }
 

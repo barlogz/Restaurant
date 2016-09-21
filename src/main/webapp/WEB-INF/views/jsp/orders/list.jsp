@@ -12,7 +12,7 @@
     <h1 style="text-align: center; color: #23527c">Список заказов</h1>
 
 
-    <spring:url value="/orders/add" var="addUrl"/>
+    <spring:url value="/order/add" var="addUrl"/>
     <button class="btn btn-primary" onclick="location.href='${addUrl}'">Add Order</button>
     <br>
     <br>
@@ -32,20 +32,20 @@
 
         <c:forEach items="${ordersAttr}" var="order">
             <tr>
-                <td><a href="/orders/show/${order.id}">${order.id}</a></td>
+                <td><a href="/order/show/${order.id}">${order.id}</a></td>
                 <td>${order.waiter.name}</td>
                 <td>${order.tableNumber}</td>
                 <td>${order.orderDate}</td>
                 <td>${order.orderStatus}</td>
 
                 <td style="align-items: center; width: 20px">
-                    <spring:url value="/orders/${order.id}/delete" var="deleteUrl"/>
+                    <spring:url value="/order/${order.id}/delete" var="deleteUrl"/>
                     <a href="${deleteUrl}">
                         <img src="<c:url value="/resources/images/garbage24.jpg"/>"/>
                     </a>
                 </td>
                 <td style="align-items: center; width: 20px">
-                    <spring:url value="/orders/${order.id}/update" var="updateUrl"/>
+                    <spring:url value="/order/${order.id}/update" var="updateUrl"/>
                     <a href="${updateUrl}">
                         <img src="<c:url value="/resources/images/edit24.png"/>"/>
                     </a>

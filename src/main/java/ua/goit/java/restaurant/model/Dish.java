@@ -1,45 +1,73 @@
 package ua.goit.java.restaurant.model;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "dish")
 public class Dish {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
-    private int id;
-
-    @Column(name = "category_id")
-    private int categoryId;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
 
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
+    private DishCategory dishCategory;
+
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
     @Column(name = "weight")
-    private int weight;
+    private Integer weight;
 
-    public int getId() {
+    //for mapping
+    @JsonIgnore
+    @ManyToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    private List<Order> order;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    private List<Menu> menu;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "dish_to_ingredients",
+            joinColumns = {@JoinColumn(name = "dishId")},
+            inverseJoinColumns = {@JoinColumn(name = "ingredientId")}
+    )
+    private List<Ingredient> ingredients;
+
+
+    public Dish() {
+    }
+
+    public Dish(String name, DishCategory dishCategory, Integer price, Integer weight) {
+        this.name = name;
+        this.dishCategory = dishCategory;
+        this.price = price;
+        this.weight = weight;
+    }
+
+    @JsonIgnore
+    public boolean isNew() {
+        return (this.id == null);
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -50,20 +78,44 @@ public class Dish {
         this.name = name;
     }
 
-    public int getPrice() {
+    public DishCategory getDishCategory() {
+        return dishCategory;
+    }
+
+    public void setDishCategory(DishCategory dishCategory) {
+        this.dishCategory = dishCategory;
+    }
+
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
+    }
+
+    public List<Order> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.order = order;
+    }
+
+    public List<Menu> getMenu() {
+        return menu;
+    }
+
+    public void setMenu(List<Menu> menu) {
+        this.menu = menu;
     }
 
     @Override
@@ -73,30 +125,30 @@ public class Dish {
 
         Dish dish = (Dish) o;
 
-        if (categoryId != dish.categoryId) return false;
-        if (price != dish.price) return false;
-        if (weight != dish.weight) return false;
-        return name != null ? name.equals(dish.name) : dish.name == null;
+        if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
+        if (dishCategory != dish.dishCategory) return false;
+        if (price != null ? !price.equals(dish.price) : dish.price != null) return false;
+        return weight != null ? weight.equals(dish.weight) : dish.weight == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = categoryId;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + price;
-        result = 31 * result + weight;
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (dishCategory != null ? dishCategory.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (weight != null ? weight.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Dish{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", name='" + name + '\'' +
+                "weight=" + weight +
                 ", price=" + price +
-                ", weight=" + weight +
+                ", dishCategory=" + dishCategory +
+                ", name='" + name + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
