@@ -8,7 +8,13 @@ public interface DishDAO {
 
     void save(Dish dish);
 
-    List<Dish> findAll();
+    void remove(Dish dish);
+
+    void removeAll();
+
+    Dish findById(Integer id);
 
     Dish findByName(String name);
+
+    List<Dish> findAll();
 }
