@@ -14,8 +14,8 @@
     <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.hibernate.HEmployeeDAO"/>
     <bean id="employeeService" class="ua.goit.java.restaurant.service.impl.EmployeeServiceImpl"/>
 
-    <!--<bean id="dishDAO" class="ua.goit.java.restaurant.DAO.hibernate.HDishDAO"/>-->
-    <!--<bean id="dishService" class="ua.goit.java.restaurant.service.impl.DishServiceImpl"/>-->
+    <bean id="dishDAO" class="ua.goit.java.restaurant.DAO.hibernate.HDishDAO"/>
+    <bean id="dishService" class="ua.goit.java.restaurant.service.impl.DishServiceImpl"/>
 
     <!--!!!!!!!!!!!!!!!-->
     <!--<bean id="orderController" class="ua.goit.java.restaurant.controller.OrderController"/>-->
