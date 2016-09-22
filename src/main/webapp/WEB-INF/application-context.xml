@@ -17,6 +17,9 @@
     <bean id="dishDAO" class="ua.goit.java.restaurant.DAO.hibernate.HDishDAO"/>
     <bean id="dishService" class="ua.goit.java.restaurant.service.impl.DishServiceImpl"/>
 
+    <bean id="ingredientDAO" class="ua.goit.java.restaurant.DAO.hibernate.HIngredientDAO"/>
+    <bean id="ingredientService" class="ua.goit.java.restaurant.service.impl.IngredientServiceImpl"/>
+
     <!--!!!!!!!!!!!!!!!-->
     <!--<bean id="orderController" class="ua.goit.java.restaurant.controller.OrderController"/>-->
     <!--!!!!!!!!!!!!!!!-->
