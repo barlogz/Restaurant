@@ -23,45 +23,9 @@
     <bean id="menuDAO" class="ua.goit.java.restaurant.DAO.hibernate.HMenuDAO"/>
     <bean id="menuService" class="ua.goit.java.restaurant.service.impl.MenuServiceImpl"/>
 
-    <!--!!!!!!!!!!!!!!!-->
-    <!--<bean id="orderController" class="ua.goit.java.restaurant.controller.OrderController"/>-->
-    <!--!!!!!!!!!!!!!!!-->
-    <!--<bean id="orderDAO" class="ua.goit.java.restaurant.DAO.hibernate.HOrderDAO"/>-->
+    <bean id="orderDAO" class="ua.goit.java.restaurant.DAO.hibernate.HOrderDAO"/>
+    <bean id="orderService" class="ua.goit.java.restaurant.service.impl.OrderServiceImpl"/>
 
-    <!--
-    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
-
-    <bean class="ua.goit.java.restaurant.Main" id="main">
-        <property name="employeeController" ref="employeeController"/>
-    </bean>
-
-    <bean class="ua.goit.java.restaurant.controller.EmployeeController" id="employeeController">
-        <property name="txManager" ref="txManager"/>
-        <property name="employeeDAO" ref="employeeDAO"/>
-    </bean>
-
-    <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.jdbc.JdbcEmployeeDAO">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
-        <property name="driverClass" value="${jdbc.driver.class}"/>
-        <property name="jdbcUrl" value="${jdbc.url}"/>
-        <property name="user" value="${jdbc.user}"/>
-        <property name="password" value="${jdbc.password}"/>
-        <property name="minPoolSize" value="${jdbc.min.connections}"/>
-        <property name="maxPoolSize" value="${jdbc.max.connections}"/>
-        <property name="acquireIncrement" value="${jdbc.acquire.increment}"/>
-    </bean>
-
-    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"/>
-    </bean>
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties"/>
-    </bean>
--->
 
 </beans>
 

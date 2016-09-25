@@ -83,12 +83,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/ingredients/list">
-                <h4>Ингридиенты</h4>
+                <h4>Ingredients</h4>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/order/list">
-                <h4>Заказы</h4>
+            <a class="nav-link" href="/orders/list">
+                <h4>Orders</h4>
             </a>
         </li>
         <li class="nav-item">

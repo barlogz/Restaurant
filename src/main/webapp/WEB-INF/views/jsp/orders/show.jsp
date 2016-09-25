@@ -9,11 +9,11 @@
 
 <div style="width: 50%; margin-left: 20px">
 
-    <h1 style="text-align: center; color: #761c19">Order: ${order.id}</h1>
+    <h1 style="text-align: center; color: #23527c">Order: ${order.id}</h1>
 
     <hr>
 
-    <h1 style="color: #985f0d"> List of dishes: </h1>
+    <h1 style="color: #658eff"> List of dishes: </h1>
 
     <table border="1" style="align-items: center" class="table table-striped">
         <thead>
@@ -35,9 +35,9 @@
                 <td>${dishes.weight}</td>
 
                 <td style="align-items: center; width: 20px">
-                    <spring:url value="/order/${order.id}/deleteDish/${dishes.id}" var="deleteDishFromOrderUrl"/>
+                    <spring:url value="/orders/${order.id}/deleteDish/${dishes.id}" var="deleteDishFromOrderUrl"/>
                     <a href="${deleteDishFromOrderUrl}">
-                        <img src="<c:url value="/resources/images/garbage24.jpg"/>"/>
+                        <img src="<c:url value="/resources/images/delete_button_30.jpg"/>"/>
                     </a>
                 </td>
 
@@ -54,7 +54,7 @@
 
 <hr>
 
-<spring:url value="/order/${order.id}/addDish" var="menuActionUrl"/>
+<spring:url value="/orders/${order.id}/addDish" var="menuActionUrl"/>
 
 <form:form action="${menuActionUrl}" modelAttribute="dish" method="post">
 

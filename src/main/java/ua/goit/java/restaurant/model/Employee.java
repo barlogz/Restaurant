@@ -44,7 +44,7 @@ public class Employee implements Serializable{
     private String phoneNumber;
 
 //    for mapping
-    @OneToMany(mappedBy = "waiter", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "waiter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Order> orders;
 
     public Employee() {

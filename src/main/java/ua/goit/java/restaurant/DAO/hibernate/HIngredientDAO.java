@@ -45,7 +45,7 @@ public class HIngredientDAO implements IngredientDAO{
     @Transactional
     public Ingredient findByName(String name) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select i from Ingredients i where i.name like :name");
+        Query query = session.createQuery("select i from Ingredient i where i.name like :name");
         query.setParameter("name", name);
         return (Ingredient) query.uniqueResult();
     }
@@ -53,7 +53,7 @@ public class HIngredientDAO implements IngredientDAO{
     @Override
     @Transactional
     public List<Ingredient> findAll() {
-        return sessionFactory.getCurrentSession().createQuery("select i from Ingredients i").list();
+        return sessionFactory.getCurrentSession().createQuery("select i from Ingredient i").list();
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {

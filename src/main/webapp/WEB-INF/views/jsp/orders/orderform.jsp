@@ -22,21 +22,21 @@
     <br/>
 
 
-    <spring:url value="/order/list" var="orderActionUrl"/>
+    <spring:url value="/orders/list" var="orderActionUrl"/>
 
     <form:form class="form-horizontal" method="post" modelAttribute="orderForm" action="${orderActionUrl}">
 
         <form:errors path="*" cssClass="errorblock" element="div"/>
 
-         <form:hidden path="id" />
+        <form:hidden path="id" />
 
 
-        <spring:bind path="waiter.name">
+        <spring:bind path="waiter.firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Waiter's name</label>
                 <div class="col-sm-10">
 
-                    <form:select path="waiter.name" class="form-control">
+                    <form:select path="waiter.firstName" class="form-control">
                         <form:options items="${waiterNames}"/>
                     </form:select>
                 </div>

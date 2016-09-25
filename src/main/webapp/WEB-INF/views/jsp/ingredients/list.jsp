@@ -32,13 +32,13 @@
                 <td style="align-items: center; width: 20px">
                     <spring:url value="/ingredients/${ingredient.id}/delete" var="deleteUrl"/>
                     <a href="${deleteUrl}">
-                        <img src="<c:url value="/resources/images/garbage24.jpg"/>"/>
+                        <img src="<c:url value="/resources/images/delete_button_30.jpg"/>"/>
                     </a>
                 </td>
                 <td style="align-items: center; width: 20px">
                     <spring:url value="/ingredients/${ingredient.id}/update" var="updateUrl"/>
                     <a href="${updateUrl}">
-                        <img src="<c:url value="/resources/images/edit24.png"/>"/>
+                        <img src="<c:url value="/resources/images/edit_button_30.jpg"/>"/>
                     </a>
                 </td>
             </tr>

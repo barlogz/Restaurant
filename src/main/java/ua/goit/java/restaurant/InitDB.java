@@ -16,12 +16,12 @@ public class InitDB {
     private DishDAO dishDAO;
     @Autowired
     private EmployeeDAO employeeDAO;
-//    @Autowired
-//    private OrderDAO orderDAO;
+    @Autowired
+    private OrderDAO orderDAO;
     @Autowired
     private MenuDAO menuDAO;
-//    @Autowired
-//    private IngredientDAO ingredientDAO;
+    @Autowired
+    private IngredientDAO ingredientDAO;
 //    @Autowired
 //    private WarehouseDAO warehouseDAO;
 //    @Autowired
@@ -51,29 +51,53 @@ public class InitDB {
 
 
         Employee iryna = new Employee();
-        iryna.setFirstName("Sydorenko");
-        iryna.setLastName("Iryna");
+        iryna.setFirstName("Iryna");
+        iryna.setLastName("Sydorenko");
         iryna.setBirthday(Date.valueOf("1992-01-11"));
         iryna.setPhoneNumber("+38(099)999-00-11");
         iryna.setPosition(Position.WAITER);
         iryna.setSalary(160000);
         employeeDAO.save(iryna);
 
-        /**NOT IMPLEMENTED CLASS YET**/
-//        Cook volodymyr = new Cook();
-//        volodymyr.setFirstName("Petrenko");
-//        volodymyr.setLastName("Volodymyr");
-//        volodymyr.setBirthday(Date.valueOf("1981-01-02"));
-//        volodymyr.setPhoneNumber("+38(099)999-00-08");
-//        volodymyr.setPosition(Position.COOK);
-//        volodymyr.setSalary(200000);
-//        employeeDAO.save(volodymyr);
+//        /**NOT IMPLEMENTED CLASS YET**/
+        Cook volodymyr = new Cook();
+        volodymyr.setFirstName("Petrenko");
+        volodymyr.setLastName("Volodymyr");
+        volodymyr.setBirthday(Date.valueOf("1981-01-02"));
+        volodymyr.setPhoneNumber("+38(099)999-00-08");
+        volodymyr.setPosition(Position.COOK);
+        volodymyr.setSalary(200000);
+        employeeDAO.save(volodymyr);
+
+        Ingredient dough = new Ingredient();
+        dough.setName("dough");
+        ingredientDAO.save(dough);
+
+        Ingredient pizzaCheese = new Ingredient();
+        pizzaCheese.setName("pizza cheese");
+        ingredientDAO.save(pizzaCheese);
+
+        Ingredient basil = new Ingredient();
+        basil.setName("basil");
+        ingredientDAO.save(basil);
+
+        Ingredient tomatoSauce = new Ingredient();
+        tomatoSauce.setName("tomato sauce");
+        ingredientDAO.save(tomatoSauce);
+
+        List<Ingredient> margaritaIngredients = new ArrayList<>();
+        margaritaIngredients.add(dough);
+        margaritaIngredients.add(pizzaCheese);
+        margaritaIngredients.add(basil);
+        margaritaIngredients.add(tomatoSauce);
 
         Dish margarita = new Dish();
         margarita.setName("MARGARITA");
         margarita.setDishCategory(DishCategory.PIZZA);
         margarita.setPrice(158);
         margarita.setWeight(1250);
+        margarita.setIngredients(margaritaIngredients);
+
         dishDAO.save(margarita);
 
         List<Dish> pizzaDishes = new ArrayList<>();
@@ -84,6 +108,15 @@ public class InitDB {
         pizza.setName("PIZZA");
         pizza.setDishes(pizzaDishes);
         menuDAO.save(pizza);
+
+
+        Order order1 = new Order();
+        order1.setWaiter(employeeDAO.findByName("Iryna"));
+        order1.setDishes(pizzaDishes);
+        order1.setTableNumber(1);
+        order1.setOrderDate(new java.util.Date());
+//        order1.setOrderStatus(OrderStatus.OPENED);
+        orderDAO.save(order1);
 
         System.out.println("*** INIT DB DONE ***");
 
@@ -99,5 +132,13 @@ public class InitDB {
 
     public void setMenuDAO(MenuDAO menuDAO) {
         this.menuDAO = menuDAO;
+    }
+
+    public void setOrderDAO(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
+    }
+
+    public void setIngredientDAO(IngredientDAO ingredientDAO) {
+        this.ingredientDAO = ingredientDAO;
     }
 }
