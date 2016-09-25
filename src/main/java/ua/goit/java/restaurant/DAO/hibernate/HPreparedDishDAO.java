@@ -9,7 +9,7 @@ import ua.goit.java.restaurant.model.PreparedDish;
 
 import java.util.List;
 
-public class HPreparedDishDAO implements PreparedDishDAO{
+public class HPreparedDishDAO implements PreparedDishDAO {
     private SessionFactory sessionFactory;
 
     @Override
@@ -26,22 +26,27 @@ public class HPreparedDishDAO implements PreparedDishDAO{
 
     @Override
     @Transactional
-    public PreparedDish findById(Long id) {
-            return sessionFactory.getCurrentSession().get(PreparedDish.class, id);
-        }
+    public PreparedDish findById(Integer id) {
+        return sessionFactory.getCurrentSession().get(PreparedDish.class, id);
+    }
 
 
-        @Override
+    @Override
     @Transactional
     public List<PreparedDish> findByName(String name) {
-            Session session = sessionFactory.getCurrentSession();
-            Query query = session.createQuery("select p from PreparedDish p where p.dish.name like :name");
-            query.setParameter("name", name);
-            return query.list();    }
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select p from PreparedDish p where p.dish.name like :name");
+        query.setParameter("name", name);
+        return query.list();
+    }
 
     @Override
     @Transactional
     public List<PreparedDish> findAll() {
-        return null;
+        return sessionFactory.getCurrentSession().createQuery("select p from PreparedDish p").list();
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }

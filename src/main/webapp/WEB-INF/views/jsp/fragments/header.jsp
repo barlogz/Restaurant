@@ -78,7 +78,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/prepared/list">
-                <h4>Приготовленные блюда</h4>
+                <h4>Prepared dishes</h4>
             </a>
         </li>
         <li class="nav-item">
@@ -93,12 +93,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/warehouses/list">
-                <h4>Склад</h4>
+                <h4>Warehouse</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/contact/info">
-                <h4>Контакты</h4>
+                <h4>Contacts</h4>
             </a>
         </li>
     </ul>

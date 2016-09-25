@@ -26,6 +26,11 @@
     <bean id="orderDAO" class="ua.goit.java.restaurant.DAO.hibernate.HOrderDAO"/>
     <bean id="orderService" class="ua.goit.java.restaurant.service.impl.OrderServiceImpl"/>
 
+    <bean id="preparedDishDAO" class="ua.goit.java.restaurant.DAO.hibernate.HPreparedDishDAO"/>
+    <bean id="preparedDishService" class="ua.goit.java.restaurant.service.impl.PreparedDishServiceImpl"/>
+
+    <bean id="warehouseDAO" class="ua.goit.java.restaurant.DAO.hibernate.HWarehouseDAO"/>
+    <bean id="warehouseService" class="ua.goit.java.restaurant.service.impl.WarehouseServiceImpl"/>
 
 </beans>
 
