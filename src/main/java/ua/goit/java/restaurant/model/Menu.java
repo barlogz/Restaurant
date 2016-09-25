@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "menu")
+@Table(name = "menus")
 public class Menu {
     @Id
     @GeneratedValue
@@ -16,7 +16,7 @@ public class Menu {
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "menu_to_dishes",
+    @JoinTable(name = "menus_to_dishes",
             joinColumns = {@JoinColumn(name = "menuId")},
             inverseJoinColumns = {@JoinColumn(name = "dishId")})
     private List<Dish> dishes;

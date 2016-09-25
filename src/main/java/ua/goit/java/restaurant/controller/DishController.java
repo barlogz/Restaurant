@@ -24,7 +24,7 @@ public class DishController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DishController.class);
 
-    @RequestMapping(value = "/dishes/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/dishes/list", method = RequestMethod.GET)
     public String dishesCtrl(Model model) {
         model.addAttribute("dish", dishService.findAll());
         return "/dishes/list";
@@ -59,12 +59,14 @@ public class DishController {
         model.addAttribute("listOfDishCategory", DishCategory.values());
         // set default value
         Dish dish = new Dish();
-        dish.setName("Saladdd");
+        dish.setName("Salad");
         model.addAttribute("dishForm", dish);
         return "/dishes/dishform";
     }
 
+    @RequestMapping(value = "/dishes/{id}/update", method = RequestMethod.GET)
     public String showAddDishForm(@PathVariable("id") Integer id, Model model) {
+        LOGGER.debug("showUpdateDishForm() : {}", id);
         Dish dish = dishService.findById(id);
         model.addAttribute("dishForm", dish);
         return "/dishes/dishform";

@@ -7,23 +7,25 @@ import ua.goit.java.restaurant.model.*;
 
 import javax.annotation.PostConstruct;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class InitDB {
-//    @Autowired
-//    private DishDao dishDao;
+    @Autowired
+    private DishDAO dishDAO;
     @Autowired
     private EmployeeDAO employeeDAO;
 //    @Autowired
-//    private OrderDao orderDao;
+//    private OrderDAO orderDAO;
+    @Autowired
+    private MenuDAO menuDAO;
 //    @Autowired
-//    private MenuDao menuDao;
+//    private IngredientDAO ingredientDAO;
 //    @Autowired
-//    private IngredientDao ingredientDao;
+//    private WarehouseDAO warehouseDAO;
 //    @Autowired
-//    private WarehouseDao warehouseDao;
-//    @Autowired
-//    private PreparedDishDao preparedDishDao;
+//    private PreparedDishDAO preparedDishDAO;
 
     @PostConstruct
     public void init() {
@@ -67,11 +69,35 @@ public class InitDB {
 //        volodymyr.setSalary(200000);
 //        employeeDAO.save(volodymyr);
 
+        Dish margarita = new Dish();
+        margarita.setName("MARGARITA");
+        margarita.setDishCategory(DishCategory.PIZZA);
+        margarita.setPrice(158);
+        margarita.setWeight(1250);
+        dishDAO.save(margarita);
+
+        List<Dish> pizzaDishes = new ArrayList<>();
+        pizzaDishes.add(margarita);
+
+
+        Menu pizza = new Menu();
+        pizza.setName("PIZZA");
+        pizza.setDishes(pizzaDishes);
+        menuDAO.save(pizza);
+
         System.out.println("*** INIT DB DONE ***");
 
     }
 
     public void setEmployeeDAO(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
+    }
+
+    public void setDishDAO(DishDAO dishDAO) {
+        this.dishDAO = dishDAO;
+    }
+
+    public void setMenuDAO(MenuDAO menuDAO) {
+        this.menuDAO = menuDAO;
     }
 }

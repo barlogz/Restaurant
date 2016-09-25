@@ -33,7 +33,7 @@ public class IngredientController {
     public String saveOrUpdateIngredient(@ModelAttribute("ingredientForm") @Validated Ingredient ingredient,
                                          BindingResult result) {
         if (result.hasErrors()) {
-            return "ingredients/ingredientform";
+            return "/ingredients/ingredientform";
         }
         ingredientService.save(ingredient);
         return "redirect:/ingredients/list";

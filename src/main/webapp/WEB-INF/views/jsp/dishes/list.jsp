@@ -9,9 +9,9 @@
 
 
 
-<div style="width: 50%; margin-left: 20px">
+<div style="width: 50%; margin-left: 20px; align-items: center">
 
-    <h1 style="text-align: center; color: #23527c">Dishes of our restaurant</h1>
+    <h1 style="text-align: center; color: #23527c">Our restaurant dishes</h1>
 
     <spring:url value="/dishes/add" var="addUrl" />
     <button class="btn btn-primary" onclick="location.href='${addUrl}'">Add Dish</button>
@@ -30,7 +30,7 @@
         </tr>
         </thead>
 
-        <c:forEach items="${dishes}" var="dish">
+        <c:forEach items="${dish}" var="dish">
             <tr>
                 <td><a href="/dishes/show/${dish.name}">${dish.name}</a></td>
                 <td>${dish.dishCategory}</td>

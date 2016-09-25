@@ -10,14 +10,14 @@ import ua.goit.java.restaurant.model.Employee;
 
 import java.util.List;
 
-public class HDishDAO implements DishDAO{
+public class HDishDAO implements DishDAO {
 
     private SessionFactory sessionFactory;
 
     @Override
     @Transactional
     public void save(Dish dish) {
-        sessionFactory.getCurrentSession().save(dish);
+        sessionFactory.getCurrentSession().saveOrUpdate(dish);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class HDishDAO implements DishDAO{
     @Transactional
     public Dish findById(Integer id) {
         Dish result = sessionFactory.getCurrentSession().get(Dish.class, id);
-        if (result==null) {
+        if (result == null) {
             throw new RuntimeException("There is no such Dish with id = " + id);
         }
         return result;

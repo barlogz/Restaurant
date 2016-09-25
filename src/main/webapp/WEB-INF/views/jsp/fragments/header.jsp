@@ -68,12 +68,12 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/menus/list">
-                <h4>Меню</h4>
+                <h4>Menu</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/dishes/list">
-                <h4>Блюда</h4>
+                <h4>Dishes</h4>
             </a>
         </li>
         <li class="nav-item">

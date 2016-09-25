@@ -9,11 +9,11 @@
 
 <jsp:include page="../fragments/header.jsp"/>
 
-<div class="container">
+<div class="container" style="width: 50%; margin-left: 20px; align-items: center">
 
     <c:choose>
         <c:when test="${dishForm['new']}">
-            <h1>Add Dish</h1>
+            <h1 style="text-align: center; color: #23527c">Add Dish</h1>
         </c:when>
         <c:otherwise>
             <h1>Update Dish</h1>

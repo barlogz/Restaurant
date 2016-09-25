@@ -7,7 +7,8 @@
 <body>
 
 <div style="width: 50%; margin-left: 20px">
-    <h1 style="text-align: center; color: #23527c">Detailed staff information about: ${employee.firstName} ${employee.lastName} </h1>
+    <h1 style="text-align: center; color: #23527c">Detailed information about
+        staff: ${employee.firstName} ${employee.lastName} </h1>
     <table border="1" style="align-items: center" class="table table-striped">
         <tr>
             <th>First Name</th>
@@ -32,7 +33,7 @@
 </div>
 
 <div style="margin-left: 20%">
-    <spring:url value="/employees/list" var="addUrl2" />
+    <spring:url value="/employees/list" var="addUrl2"/>
     <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of staff</button>
 </div>
 
