@@ -26,9 +26,8 @@ public class Ingredient {
     public Ingredient() {
     }
 
-    public Ingredient(String name, Warehouse warehouse) {
+    public Ingredient(String name) {
         this.name = name;
-        this.warehouse = warehouse;
     }
 
     public boolean isNew() {

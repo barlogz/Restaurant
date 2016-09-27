@@ -6,17 +6,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<body style="background-color:#c3f3f9;">
 
 <jsp:include page="../fragments/header.jsp"/>
 
-<div class="container">
+<div class="container" style="width: 50%; margin-left: 20px; align-items: center">
 
     <c:choose>
         <c:when test="${orderForm['new']}">
-            <h1>Add Order</h1>
+            <h1 style="text-align: center; color: #23527c">Add Order</h1>
         </c:when>
         <c:otherwise>
-            <h1>Update Order</h1>
+            <h1 style="text-align: center; color: #23527c">Update Order</h1>
         </c:otherwise>
     </c:choose>
     <br/>
@@ -60,7 +61,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-10">
-                    <form:input path="orderDate" type="date" class="form-control " id="orderDate" placeholder="Date"/>
+                    <form:input path="orderDate" type="date" class="form-control " id="orderDate" placeholder="Date" required="required"/>
                     <form:errors path="orderDate" class="control-label"/>
                 </div>
             </div>
@@ -116,6 +117,11 @@
 
     </form:form>
 
+</div>
+
+<div style="margin-left: 20%">
+    <spring:url value="/orders/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of orders</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp"/>

@@ -3,7 +3,7 @@
 
 <html>
 <jsp:include page="../jsp/fragments/header.jsp"/>
-<body>
+<body style="background-color:#c3f3f9;">
 
 <div style="margin-left: 15px">
     <table style="width: auto">
@@ -28,17 +28,17 @@
                             Golden Gates.</p>
                         <p style="text-align: justify"> &nbsp; Una Pizza Napoletana is a favourite of Kyivans and visitors to
                             this city, who appreciate our Italian kitchen, good music and great service.  And even
-                            though a great deal has changed over the 20 years since we first started Vesuvio, our
+                            though a great deal has changed over the 20 years since we first started, our
                             quality continues to retain its high level.</p>
                     </h4>
                     <table>
                         <tr>
                             <td>
-                                <img src="<c:url value="/resources/images/book_a_table.jpg"/>">
+                                <img src="<c:url value="/resources/images/book_a_table_sm.jpg"/>">
                             </td>
                             <td>
                                 <h4 style="color: #0b0776">
-                                    (044) 123-45-54
+                                    &nbsp; (044) 278-30-28
                                 </h4>
                             </td>
                         </tr>

@@ -95,12 +95,18 @@ public class MenuController {
         return "/menus/menuform";
     }
 
-    @RequestMapping(value = "menu/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "menus/{id}/update", method = RequestMethod.GET)
     public String updateMenu(@PathVariable Integer id, Model model) {
         Menu menu = menuService.findById(id);
         model.addAttribute("menuForm",menu);
         return "/menus/menuform";
     }
 
+    public void setMenuService(MenuService menuService) {
+        this.menuService = menuService;
+    }
 
+    public void setDishService(DishService dishService) {
+        this.dishService = dishService;
+    }
 }

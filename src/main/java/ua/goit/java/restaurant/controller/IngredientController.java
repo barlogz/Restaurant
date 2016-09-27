@@ -60,5 +60,7 @@ public class IngredientController {
         return "/ingredients/ingredientform";
     }
 
-
+    public void setIngredientService(IngredientService ingredientService) {
+        this.ingredientService = ingredientService;
+    }
 }

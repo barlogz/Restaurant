@@ -18,6 +18,7 @@ import ua.goit.java.restaurant.service.interfaces.DishService;
 import ua.goit.java.restaurant.service.interfaces.EmployeeService;
 import ua.goit.java.restaurant.service.interfaces.OrderService;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -95,17 +96,17 @@ public class OrderController {
 
     @RequestMapping(value = "/orders/{id}/addDish", method = RequestMethod.POST)
     public String addDishToOrder(@PathVariable("id") Integer id, @ModelAttribute("dish") Dish dish) {
-//        String dishName = dish.getName();
-//        Dish thisDish = dishService.findByName(dishName);
-//        Order order = orderService.findById(id);
-//        order.getDishes().add(thisDish);
-
-        Order order = orderService.findById(id);
         String dishName = dish.getName();
         Dish thisDish = dishService.findByName(dishName);
-        List<Dish> dishes = order.getDishes();
-        dishes.add(thisDish);
-        order.setDishes(dishes);
+        Order order = orderService.findById(id);
+        order.getDishes().add(thisDish);
+
+//        Order order = orderService.findById(id);
+//        String dishName = dish.getName();
+//        Dish thisDish = dishService.findByName(dishName);
+//        List<Dish> dishes = order.getDishes();
+//        dishes.add(thisDish);
+//        order.setDishes(dishes);
 
         orderService.save(order);
         return "redirect:/orders/show/" + order.getId();
@@ -115,10 +116,20 @@ public class OrderController {
     public String deleteDishFromOrder(@PathVariable("orderId") Integer orderId, @PathVariable("dishId") Integer dishId) {
         Order order = orderService.findById(orderId);
         List<Dish> dishes = order.getDishes();
-        Dish thisDish = dishService.findById(dishId);
-        if (dishes.contains(thisDish)) {
-            dishes.remove(dishes.lastIndexOf(thisDish));
+//        Dish thisDish = dishService.findById(dishId);
+//        if (dishes.contains(thisDish)) {
+//            dishes.remove(dishes.lastIndexOf(thisDish));
+//        }
+
+        Iterator<Dish> iterator = dishes.iterator();
+        while (iterator.hasNext()) {
+            Dish dish = iterator.next();
+            if(dish.getId()==dishId) {
+                iterator.remove();
+                break;
+            }
         }
+
         orderService.save(order);
         return "redirect:/orders/show/" + order.getId();
     }

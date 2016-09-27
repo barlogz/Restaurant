@@ -41,14 +41,23 @@ public class HOrderDAO implements OrderDAO {
         sessionFactory.getCurrentSession().createQuery("delete from Order").executeUpdate();
     }
 
+//    @Override
+//    @Transactional
+//    public Order findById(Integer id) {
+//        Order result = sessionFactory.getCurrentSession().get(Order.class, id);
+//        if (result == null) {
+//            throw new RuntimeException("There is no such Order with id: " + "\"" + id + "\"");
+//        }
+//        return result;
+//    }
+
     @Override
     @Transactional
     public Order findById(Integer id) {
-        Order result = sessionFactory.getCurrentSession().get(Order.class, id);
-        if (result == null) {
-            throw new RuntimeException("There is no such Order with id: " + "\"" + id + "\"");
-        }
-        return result;
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select o from Order o where o.id = :id");
+        query.setParameter("id", id);
+        return (Order) query.uniqueResult();
     }
 
     @Override

@@ -6,17 +6,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<body style="background-color:#c3f3f9;">
 
 <jsp:include page="../fragments/header.jsp" />
 
-<div class="container">
+<div class="container"  style="width: 50%; margin-left: 20px; align-items: center">
 
     <c:choose>
         <c:when test="${employeeForm['new']}">
-            <h1>Add User</h1>
+            <h1 style="text-align: center; color: #23527c">Add Employee</h1>
         </c:when>
         <c:otherwise>
-            <h1>Update User</h1>
+            <h1 style="text-align: center; color: #23527c">Update User</h1>
         </c:otherwise>
     </c:choose>
     <br />
@@ -32,7 +33,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">First Name</label>
                 <div class="col-sm-10">
-                    <form:input path="firstName" type="text" class="form-control " id="firstName" placeholder="firstName" />
+                    <form:input path="firstName" type="text" class="form-control" id="firstName" placeholder="firstName" required="required"/>
                     <form:errors path="firstName" class="control-label" />
                 </div>
             </div>
@@ -42,7 +43,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Last Name</label>
                 <div class="col-sm-10">
-                    <form:input path="lastName" class="form-control" id="lastName" placeholder="lastName" />
+                    <form:input path="lastName" class="form-control" id="lastName" placeholder="lastName" required="required"/>
                     <form:errors path="lastName" class="control-label" />
                 </div>
             </div>
@@ -52,7 +53,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Birthday</label>
                 <div class="col-sm-10">
-                    <form:input path="birthday" type="date" class="form-control " id="birthday" placeholder="Date" />
+                    <form:input path="birthday" type="date" class="form-control " id="birthday" placeholder="Date" required="required"/>
                     <form:errors path="birthday" class="control-label" />
                 </div>
             </div>
@@ -113,6 +114,11 @@
 
     </form:form>
 
+</div>
+
+<div style="margin-left: 20%">
+    <spring:url value="/employees/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of staff</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp" />

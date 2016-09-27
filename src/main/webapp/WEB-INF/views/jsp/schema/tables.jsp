@@ -3,10 +3,10 @@
 
 <html>
 <jsp:include page="../fragments/header.jsp"/>
-<body>
+<body style="background-color:#c3f3f9;">
 
 <div style="margin-left: 30px">
-    <table style="width: 101%">
+    <table style="width: 60%">
         <tr style="vertical-align:top" align="center">
             <td>
                 <h2 style="color: #0b0776; vertical-align:middle">Pizzeria scheme</h2>

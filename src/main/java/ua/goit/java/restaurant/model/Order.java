@@ -1,7 +1,6 @@
 package ua.goit.java.restaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,8 +13,9 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(generator = "increment")
+//    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", unique = true)
     private Integer id;
 
@@ -136,7 +136,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", waiter=" + waiter +
+                /*", waiter=" + waiter +*/
                 ", dishes=" + dishes +
                 ", tableNumber=" + tableNumber +
                 ", orderDate=" + orderDate +

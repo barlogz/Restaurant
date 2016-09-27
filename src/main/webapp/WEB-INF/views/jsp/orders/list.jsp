@@ -5,7 +5,7 @@
 <html>
 <jsp:include page="../fragments/header.jsp"/>
 
-<body>
+<body style="background-color:#c3f3f9;">
 
 <div style="width: 50%; margin-left: 20px">
 

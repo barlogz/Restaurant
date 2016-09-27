@@ -6,17 +6,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<body style="background-color:#c3f3f9;">
 
 <jsp:include page="../fragments/header.jsp" />
 
-<div class="container">
+<div class="container" style="width: 50%; margin-left: 20px; align-items: center">
 
     <c:choose>
         <c:when test="${warehouseForm['new']}">
-            <h1>Add Ingredient to Warehouse</h1>
+            <h1 style="text-align: center; color: #23527c">Add Ingredient to Warehouse</h1>
         </c:when>
         <c:otherwise>
-            <h1>Update</h1>
+            <h1 style="text-align: center; color: #23527c">Update</h1>
         </c:otherwise>
     </c:choose>
     <br />
@@ -45,7 +46,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Quantity</label>
                 <div class="col-sm-10">
-                    <form:input path="quantity" type="text" class="form-control " id="name" placeholder="Quantity" />
+                    <form:input path="quantity" type="text" class="form-control " id="name" placeholder="Quantity"  required="required"/>
                     <form:errors path="quantity" class="control-label" />
                 </div>
             </div>
@@ -84,6 +85,11 @@
 
     </form:form>
 
+</div>
+
+<div style="margin-left: 20%">
+    <spring:url value="/warehouses/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to warehouse</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp" />

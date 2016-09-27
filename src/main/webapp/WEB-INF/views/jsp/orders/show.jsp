@@ -5,7 +5,7 @@
 <html>
 <jsp:include page="../fragments/header.jsp"/>
 
-<body>
+<body style="background-color:#c3f3f9;">
 
 <div style="width: 50%; margin-left: 20px">
 
@@ -86,6 +86,10 @@
 <button class="btn btn-default" onclick="addDishToMenu(${menu.id}, document.getElementById('dishId'))">Add Dish</button>
 </form>--%>
 
+<div style="margin-left: 20%">
+    <spring:url value="/orders/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of orders</button>
+</div>
 
 <jsp:include page="../fragments/footer.jsp"/>
 </body>

@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "menus")
 public class Menu {
+
     @Id
     @GeneratedValue
     private Integer id;

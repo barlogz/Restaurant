@@ -5,11 +5,11 @@
 <html>
 <jsp:include page="../fragments/header.jsp" />
 
-<body>
+<body style="background-color:#c3f3f9;">
 
 <div style="width: 50%; margin-left: 20px">
 
-    <h1 style="text-align: center; color: #23527c">Приготовленные блюда:</h1>
+    <h1 style="text-align: center; color: #23527c">Cooked dishes</h1>
 
     <spring:url value="/prepared/add" var="addUrl" />
     <button class="btn btn-primary" onclick="location.href='${addUrl}'">Add Dish</button>
@@ -23,8 +23,8 @@
             <th>Dish Category</th>
             <th>Price</th>
             <th>Weight</th>
-            <th>Prepared date</th>
-            <th>Cooker Name</th>
+            <th>Cook date</th>
+            <th>Cook Name</th>
 
             <th></th>
             <th></th>
@@ -37,8 +37,8 @@
                 <td>${preparedDish.dish.dishCategory}</td>
                 <td>${preparedDish.dish.price}</td>
                 <td>${preparedDish.dish.weight}</td>
-                <td>${preparedDish.preparingDate}</td>
-                <td>${preparedDish.cooker.name}</td>
+                <td>${preparedDish.cookingDate}</td>
+                <td>${preparedDish.cook.firstName}</td>
 
 
                 <td style="align-items: center; width: 20px">

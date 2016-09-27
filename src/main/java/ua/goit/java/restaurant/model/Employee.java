@@ -1,10 +1,12 @@
 package ua.goit.java.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -15,12 +17,8 @@ public class Employee implements Serializable{
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
     private Integer id;
-
-//    @Column(name = "position_id")
-//    private int positionId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -43,20 +41,31 @@ public class Employee implements Serializable{
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @Column(name = "biography")
+    private String biography;
+
+    @Column(name = "content")
+    @JsonIgnore
+    @Type(type="org.hibernate.type.BinaryType")
+    private byte[] content;
+
 //    for mapping
-    @OneToMany(mappedBy = "waiter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "waiter")
     private List<Order> orders;
 
     public Employee() {
     }
 
-    public Employee(Position position, String firstName, String lastName, Date birthday, Integer salary, String phoneNumber) {
-        this.position = position;
+    public Employee(String firstName, String lastName, Position position, Date birthday, Integer salary,
+                    String phoneNumber, String biography, byte[] content) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.position = position;
         this.birthday = birthday;
         this.salary = salary;
         this.phoneNumber = phoneNumber;
+        this.biography = biography;
+        this.content = content;
     }
 
     public boolean isNew() {
@@ -119,6 +128,22 @@ public class Employee implements Serializable{
         this.phoneNumber = phoneNumber;
     }
 
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public byte[] getContent() {
+        return content;
+    }
+
+    public void setContent(byte[] content) {
+        this.content = content;
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
@@ -134,26 +159,23 @@ public class Employee implements Serializable{
 
         Employee employee = (Employee) o;
 
-        if (position != employee.position) return false;
         if (firstName != null ? !firstName.equals(employee.firstName) : employee.firstName != null) return false;
         if (lastName != null ? !lastName.equals(employee.lastName) : employee.lastName != null) return false;
+        if (position != employee.position) return false;
         if (birthday != null ? !birthday.equals(employee.birthday) : employee.birthday != null) return false;
         if (salary != null ? !salary.equals(employee.salary) : employee.salary != null) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(employee.phoneNumber) : employee.phoneNumber != null)
-            return false;
-        return orders != null ? orders.equals(employee.orders) : employee.orders == null;
+        return phoneNumber != null ? phoneNumber.equals(employee.phoneNumber) : employee.phoneNumber == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = position != null ? position.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        int result = firstName != null ? firstName.hashCode() : 0;
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (position != null ? position.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (salary != null ? salary.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
-        result = 31 * result + (orders != null ? orders.hashCode() : 0);
         return result;
     }
 
@@ -167,7 +189,8 @@ public class Employee implements Serializable{
                 ", birthday=" + birthday +
                 ", salary=" + salary +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", orders=" + orders +
+                ", biography='" + biography + '\'' +
+                ", content=" + Arrays.toString(content) +
                 '}';
     }
 }

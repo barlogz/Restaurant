@@ -45,8 +45,8 @@
 </nav>--%>
 
 
-<img src="<c:url value="/resources/images/logo_small.jpg"/>" class="img-responsive center-block"/>
-<hr>
+<img src="<c:url value="/resources/images/logo_small_blue.png"/>" class="img-responsive center-block"/>
+
 
 <nav class="navbar navbar-light" style="background-color: #f3eca5; border: solid #658eff">
     <ul class="nav navbar-nav">
@@ -54,11 +54,6 @@
             <a class="nav-link" href="/">
                 <h4>Main</h4>
                 <span class="sr-only">(current)</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/schema/tables">
-                <h4>Pizzeria scheme</h4>
             </a>
         </li>
         <li class="nav-item">
@@ -77,8 +72,18 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="/orders/list">
+                <h4>Orders</h4>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="/prepared/list">
-                <h4>Prepared dishes</h4>
+                <h4>Cooked dishes</h4>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/warehouses/list">
+                <h4>Warehouse</h4>
             </a>
         </li>
         <li class="nav-item">
@@ -87,13 +92,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/orders/list">
-                <h4>Orders</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/warehouses/list">
-                <h4>Warehouse</h4>
+            <a class="nav-link" href="/schema/tables">
+                <h4>Pizzeria scheme</h4>
             </a>
         </li>
         <li class="nav-item">

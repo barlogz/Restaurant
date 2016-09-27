@@ -6,17 +6,18 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<body style="background-color:#c3f3f9;">
 
 <jsp:include page="../fragments/header.jsp" />
 
-<div class="container">
+<div class="container" style="width: 50%; margin-left: 20px; align-items: center">
 
     <c:choose>
         <c:when test="${preparedDishForm['new']}">
-            <h1>Add prepared dish</h1>
+            <h1 style="text-align: center; color: #23527c">Add prepared dish</h1>
         </c:when>
         <c:otherwise>
-            <h1>Update prepared dish</h1>
+            <h1 style="text-align: center; color: #23527c">Update prepared dish</h1>
         </c:otherwise>
     </c:choose>
     <br />
@@ -40,12 +41,12 @@
             </div>
         </spring:bind>
 
-        <spring:bind path="cooker.name">
+        <spring:bind path="cook.firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Cooker's name</label>
+                <label class="col-sm-2 control-label">Cook's name</label>
                 <div class="col-sm-10">
 
-                    <form:select path="cooker.name" class="form-control">
+                    <form:select path="cook.firstName" class="form-control">
                         <form:option value="NONE">--SELECT--</form:option>
                         <form:options items="${cookerNames}"/>
                     </form:select>
@@ -54,12 +55,12 @@
         </spring:bind>
 
 
-        <spring:bind path="preparingDate">
+        <spring:bind path="cookingDate">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Preparing Date</label>
+                <label class="col-sm-2 control-label">Cooking Date</label>
                 <div class="col-sm-10">
-                    <form:input path="preparingDate" type="date" class="form-control " id="preparingDate" placeholder="Date" />
-                    <form:errors path="preparingDate" class="control-label" />
+                    <form:input path="cookingDate" type="date" class="form-control " id="cookingDate" placeholder="Date"  required="required"/>
+                    <form:errors path="cookingDate" class="control-label" />
                 </div>
             </div>
         </spring:bind>
@@ -83,6 +84,11 @@
 
     </form:form>
 
+</div>
+
+<div style="margin-left: 20%">
+    <spring:url value="/prepared/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of prepared dishes</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp" />

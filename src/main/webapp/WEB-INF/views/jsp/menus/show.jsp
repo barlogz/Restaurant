@@ -5,15 +5,15 @@
 <html>
 <jsp:include page="../fragments/header.jsp"/>
 
-<body>
+<body style="background-color:#c3f3f9;">
 
-<h1 style="text-align: center; color: #761c19">Menu: ${menu.name}</h1>
+<h1  style="width: 50%; margin-left: 250px; color: #23527c"">Menu: ${menu.name}</h1>
 
 <hr>
 
 <div style="width: 50%; margin-left: 20px">
 
-<h1 style="color: #985f0d"> List of dishes: </h1>
+<h1 style="color: #658eff"> List of dishes: </h1>
 
 
     <table border="1" style="align-items: center" class="table table-striped">
@@ -58,6 +58,10 @@
     <button type="submit" class="btn-lg btn-primary ">Add dish</button>
 </form:form>
 
+<div style="margin-left: 20%">
+    <spring:url value="/menus/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of menu</button>
+</div>
 
 <%--<h3>Add Dish to Menu:</h3>
 <form action="/menus/addDish" method="post">

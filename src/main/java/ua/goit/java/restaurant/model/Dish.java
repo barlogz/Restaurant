@@ -11,7 +11,6 @@ public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id")
     private Integer id;
 
@@ -27,6 +26,9 @@ public class Dish {
 
     @Column(name = "weight")
     private Integer weight;
+
+    @Column(name = "description")
+    private String description;
 
     //for mapping
     @JsonIgnore
@@ -46,15 +48,15 @@ public class Dish {
     )
     private List<Ingredient> ingredients;
 
-
     public Dish() {
     }
 
-    public Dish(String name, DishCategory dishCategory, Integer price, Integer weight) {
+    public Dish(String name, DishCategory dishCategory, Integer price, Integer weight, String description) {
         this.name = name;
         this.dishCategory = dishCategory;
         this.price = price;
         this.weight = weight;
+        this.description = description;
     }
 
     @JsonIgnore
@@ -102,6 +104,14 @@ public class Dish {
         this.weight = weight;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<Order> getOrder() {
         return order;
     }
@@ -136,8 +146,8 @@ public class Dish {
         if (name != null ? !name.equals(dish.name) : dish.name != null) return false;
         if (dishCategory != dish.dishCategory) return false;
         if (price != null ? !price.equals(dish.price) : dish.price != null) return false;
-        return weight != null ? weight.equals(dish.weight) : dish.weight == null;
-
+        if (weight != null ? !weight.equals(dish.weight) : dish.weight != null) return false;
+        return description != null ? description.equals(dish.description) : dish.description == null;
     }
 
     @Override
@@ -146,17 +156,19 @@ public class Dish {
         result = 31 * result + (dishCategory != null ? dishCategory.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (weight != null ? weight.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         return "Dish{" +
-                "weight=" + weight +
-                ", price=" + price +
-                ", dishCategory=" + dishCategory +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", id=" + id +
+                ", dishCategory=" + dishCategory +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

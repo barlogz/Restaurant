@@ -6,6 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<body style="background-color:#c3f3f9;">
 
 <jsp:include page="../fragments/header.jsp"/>
 
@@ -16,7 +17,7 @@
             <h1 style="text-align: center; color: #23527c">Add Dish</h1>
         </c:when>
         <c:otherwise>
-            <h1>Update Dish</h1>
+            <h1 style="text-align: center; color: #23527c">Update Dish</h1>
         </c:otherwise>
     </c:choose>
     <br/>
@@ -34,7 +35,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <form:input path="name" type="text" class="form-control " id="name" placeholder="Name"/>
+                    <form:input path="name" type="text" class="form-control " id="name" placeholder="Name" required="required"/>
                     <form:errors path="name" class="control-label"/>
                 </div>
             </div>
@@ -61,7 +62,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Price</label>
                 <div class="col-sm-10">
-                    <form:input path="price" class="form-control" id="price" placeholder="Price"/>
+                    <form:input path="price" class="form-control" id="price" placeholder="Price" required="required"/>
                     <form:errors path="price" class="control-label">
                         <div id="price.errors" class="error">Incorrect value!</div>
                     </form:errors>
@@ -73,7 +74,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Weight</label>
                 <div class="col-sm-10">
-                    <form:input path="weight" class="form-control" id="weight" placeholder="Weight"/>
+                    <form:input path="weight" class="form-control" id="weight" placeholder="Weight" required="required"/>
                     <form:errors path="weight" class="control-label">
                         <div id="weight.errors" class="error">Incorrect value!</div>
                     </form:errors>
@@ -102,6 +103,10 @@
 
 </div>
 
+<div style="margin-left: 20%">
+    <spring:url value="/dishes/list" var="addUrl2"/>
+    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of dishes</button>
+</div>
 <jsp:include page="../fragments/footer.jsp"/>
 
 </body>
