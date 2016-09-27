@@ -87,8 +87,8 @@
 </div>
 
 <div style="margin-left: 20%">
-    <spring:url value="/prepared/list" var="addUrl2"/>
-    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of prepared dishes</button>
+    <spring:url value="/prepared/list" var="BackToListUrl"/>
+    <button class="btn btn-info" onclick="location.href='${BackToListUrl}'">Back to list of prepared dishes</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp" />

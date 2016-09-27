@@ -19,8 +19,8 @@
     <table border="1" style="align-items: center" class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
             <th>Dish Category</th>
+            <th>Name</th>
             <th>Price</th>
             <th>Weight</th>
             <th></th>
@@ -30,8 +30,8 @@
 
         <c:forEach items="${dish}" var="dish">
             <tr>
-                <td><a href="/dishes/show/${dish.name}">${dish.name}</a></td>
                 <td>${dish.dishCategory}</td>
+                <td><a href="/dishes/show/${dish.name}">${dish.name}</a></td>
                 <td>${dish.price}</td>
                 <td>${dish.weight}</td>
 

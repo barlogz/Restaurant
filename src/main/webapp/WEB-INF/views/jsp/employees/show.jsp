@@ -33,8 +33,8 @@
 </div>
 
 <div style="margin-left: 20%">
-    <spring:url value="/employees/list" var="addUrl2"/>
-    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of staff</button>
+    <spring:url value="/employees/list" var="BackToListUrl"/>
+    <button class="btn btn-info" onclick="location.href='${BackToListUrl}'">Back to list of staff</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp"/>

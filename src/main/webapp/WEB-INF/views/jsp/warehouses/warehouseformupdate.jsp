@@ -88,8 +88,8 @@
 </div>
 
 <div style="margin-left: 20%">
-    <spring:url value="/warehouses/list" var="addUrl2"/>
-    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to warehouse</button>
+    <spring:url value="/warehouses/list" var="BackToListUrl"/>
+    <button class="btn btn-info" onclick="location.href='${BackToListUrl}'">Back to warehouse</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp" />

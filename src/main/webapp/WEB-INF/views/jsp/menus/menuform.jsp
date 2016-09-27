@@ -75,8 +75,8 @@
 </div>
 
 <div style="margin-left: 20%">
-    <spring:url value="/menus/list" var="addUrl2"/>
-    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of menu</button>
+    <spring:url value="/menus/list" var="BackToListUrl"/>
+    <button class="btn btn-info" onclick="location.href='${BackToListUrl}'">Back to list of menu</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp" />

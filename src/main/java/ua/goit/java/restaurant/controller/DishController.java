@@ -14,13 +14,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ua.goit.java.restaurant.model.Dish;
 import ua.goit.java.restaurant.model.DishCategory;
+import ua.goit.java.restaurant.model.Ingredient;
 import ua.goit.java.restaurant.service.interfaces.DishService;
+import ua.goit.java.restaurant.service.interfaces.IngredientService;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class DishController {
 
     @Autowired
     private DishService dishService;
+
+    @Autowired
+    private IngredientService ingredientService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DishController.class);
 
@@ -40,9 +50,14 @@ public class DishController {
     }
 
     @RequestMapping(value = "dishes/show/{dishName}", method = RequestMethod.GET)
-    public ModelAndView showDish(@PathVariable String dishName) {
+    public ModelAndView showDish(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject(dishService.findByName(dishName));
+        Dish dish = dishService.findById(id);
+
+        modelAndView.addObject("dish", dish);
+        modelAndView.addObject("ingredients", dish.getIngredients());
+        modelAndView.addObject("ingredient", new Ingredient());
+
         modelAndView.setViewName("dishes/show");
         return modelAndView;
     }
@@ -57,9 +72,7 @@ public class DishController {
     @RequestMapping(value = "/dishes/add", method = RequestMethod.GET)
     public String showAddDishForm(Model model) {
         model.addAttribute("listOfDishCategory", DishCategory.values());
-        // set default value
         Dish dish = new Dish();
-        dish.setName("Salad");
         model.addAttribute("dishForm", dish);
         return "/dishes/dishform";
     }
@@ -72,8 +85,31 @@ public class DishController {
         return "/dishes/dishform";
     }
 
+    public String addIngredientToDish(@PathVariable("id") Integer id, @ModelAttribute("ingredient") Ingredient ingredient) {
+        String ingredientName = ingredient.getName();
+        Ingredient thisIngredient= ingredientService.findByName(ingredientName);
+        Dish dish = dishService.findById(id);
+        dish.getIngredients().add(thisIngredient);
+        dishService.save(dish);
+        return "redirect:/dishes/show/" + dish.getId();
+    }
 
-    public void setDishService(DishService dishService) {
-        this.dishService = dishService;
+    @ModelAttribute("ingredientNames")
+    public List<String> getIngredientNames() {
+        return ingredientService.findAll().stream().map(Ingredient::getName).collect(Collectors.toList());
+    }
+
+    public String deleteDishFromOrder(@PathVariable("dishId") Integer dishId, @PathVariable("ingredientId") Integer ingredientId) {
+        Dish dish = dishService.findById(dishId);
+        List<Ingredient> ingredients = dish.getIngredients();
+        Iterator<Ingredient> ingredientIterator = ingredients.iterator();
+        while (ingredientIterator.hasNext()) {
+            Ingredient ingredient = ingredientIterator.next();
+            if (ingredient.getId()==ingredientId) {
+                ingredientIterator.remove();
+            }
+        }
+        dishService.save(dish);
+        return "redirect:/dishes/show/" + dish.getId();
     }
 }

@@ -31,16 +31,6 @@
 
         <form:hidden path="id"/>
 
-        <spring:bind path="name">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Name</label>
-                <div class="col-sm-10">
-                    <form:input path="name" type="text" class="form-control " id="name" placeholder="Name" required="required"/>
-                    <form:errors path="name" class="control-label"/>
-                </div>
-            </div>
-        </spring:bind>
-
         <spring:bind path="dishCategory">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Dish Category</label>
@@ -54,6 +44,16 @@
                         <div id="dishCategory.errors" class="error">Please select category!</div>
                     </form:errors>
 
+                </div>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="name">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <label class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <form:input path="name" type="text" class="form-control " id="name" placeholder="Name" required="required"/>
+                    <form:errors path="name" class="control-label"/>
                 </div>
             </div>
         </spring:bind>
@@ -82,6 +82,17 @@
             </div>
         </spring:bind>
 
+        <spring:bind path="description">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <label class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-10">
+                    <form:input path="description" class="form-control" id="description" placeholder="Description"/>
+                    <form:errors path="description" class="control-label">
+                        <div id="description.errors" class="error">Incorrect value!</div>
+                    </form:errors>
+                </div>
+            </div>
+        </spring:bind>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -104,8 +115,8 @@
 </div>
 
 <div style="margin-left: 20%">
-    <spring:url value="/dishes/list" var="addUrl2"/>
-    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of dishes</button>
+    <spring:url value="/dishes/list" var="BackToListUrl"/>
+    <button class="btn btn-info" onclick="location.href='${BackToListUrl}'">Back to list of dishes</button>
 </div>
 <jsp:include page="../fragments/footer.jsp"/>
 

@@ -87,8 +87,8 @@
 </form>--%>
 
 <div style="margin-left: 20%">
-    <spring:url value="/orders/list" var="addUrl2"/>
-    <button class="btn btn-info" onclick="location.href='${addUrl2}'">Back to list of orders</button>
+    <spring:url value="/orders/list" var="BackToListUrl"/>
+    <button class="btn btn-info" onclick="location.href='${BackToListUrl}'">Back to list of orders</button>
 </div>
 
 <jsp:include page="../fragments/footer.jsp"/>
