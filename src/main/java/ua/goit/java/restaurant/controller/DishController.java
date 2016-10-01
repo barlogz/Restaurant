@@ -18,7 +18,6 @@ import ua.goit.java.restaurant.model.Ingredient;
 import ua.goit.java.restaurant.service.interfaces.DishService;
 import ua.goit.java.restaurant.service.interfaces.IngredientService;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -85,6 +84,7 @@ public class DishController {
         return "/dishes/dishform";
     }
 
+    @RequestMapping(value = "/dish/{id}/addIngredient", method = RequestMethod.POST)
     public String addIngredientToDish(@PathVariable("id") Integer id, @ModelAttribute("ingredient") Ingredient ingredient) {
         String ingredientName = ingredient.getName();
         Ingredient thisIngredient= ingredientService.findByName(ingredientName);
@@ -99,6 +99,7 @@ public class DishController {
         return ingredientService.findAll().stream().map(Ingredient::getName).collect(Collectors.toList());
     }
 
+    @RequestMapping(value = "/dishes/{dishId}/deleteIngredient/{ingredientId}", method = RequestMethod.GET)
     public String deleteDishFromOrder(@PathVariable("dishId") Integer dishId, @PathVariable("ingredientId") Integer ingredientId) {
         Dish dish = dishService.findById(dishId);
         List<Ingredient> ingredients = dish.getIngredients();
