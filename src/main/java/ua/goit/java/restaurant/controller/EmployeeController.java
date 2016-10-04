@@ -49,10 +49,10 @@ public class EmployeeController {
         }
     }
 
-    @RequestMapping(value = "/employees/show/{employeeName}", method = RequestMethod.GET)
-    public ModelAndView showEmployee(@PathVariable String employeeName) {
+    @RequestMapping(value = "/employees/show/{id}", method = RequestMethod.GET)
+    public ModelAndView showEmployee(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("employee", employeeService.findByName(employeeName));
+        modelAndView.addObject("employee", employeeService.findByID(id));
         modelAndView.setViewName("/employees/show");
         return modelAndView;
     }
@@ -83,9 +83,9 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/employees/{id}/update", method = RequestMethod.GET)
-    public String showUpdateEmployeeform(@PathVariable("id") Integer id, Model model) {
+    public String showUpdateEmployeeForm(@PathVariable("id") Integer id, Model model) {
 
-        LOGGER.debug("showUpdateEmployeeform() : {}", id);
+        LOGGER.debug("showUpdateEmployeeForm() : {}", id);
 
         Employee employee = employeeService.findByID(id);
         model.addAttribute("employeeForm", employee);

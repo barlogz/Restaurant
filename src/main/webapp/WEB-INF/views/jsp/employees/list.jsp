@@ -29,7 +29,7 @@
 
         <c:forEach items="${employees}" var="employee">
             <tr>
-                <td><a href="/employees/show/${employee.firstName}">${employee.firstName}</a></td>
+                <td><a href="/employees/show/${employee.id}">${employee.firstName}</a></td>
                 <td>${employee.lastName}</td>
                 <td>${employee.position}</td>
                 <td style="align-items: center; width: 20px">
