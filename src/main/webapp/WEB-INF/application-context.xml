@@ -8,9 +8,6 @@
        http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
        default-autowire="byName">
 
-
-    <!--<bean id="main" class="ua.goit.java.restaurant.Main"/>-->
-
     <bean id="employeeDAO" class="ua.goit.java.restaurant.DAO.hibernate.HEmployeeDAO"/>
     <bean id="employeeService" class="ua.goit.java.restaurant.service.impl.EmployeeServiceImpl"/>
 

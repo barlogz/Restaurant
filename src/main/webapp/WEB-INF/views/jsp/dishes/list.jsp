@@ -31,7 +31,7 @@
         <c:forEach items="${dish}" var="dish">
             <tr>
                 <td>${dish.dishCategory}</td>
-                <td><a href="/dishes/show/${dish.name}">${dish.name}</a></td>
+                <td><a href="/dishes/show/${dish.id}">${dish.name}</a></td>
                 <td>${dish.price}</td>
                 <td>${dish.weight}</td>
 

@@ -48,7 +48,7 @@ public class DishController {
         return "redirect:/dishes/list";
     }
 
-    @RequestMapping(value = "dishes/show/{dishName}", method = RequestMethod.GET)
+    @RequestMapping(value = "dishes/show/{id}", method = RequestMethod.GET)
     public ModelAndView showDish(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         Dish dish = dishService.findById(id);
@@ -94,13 +94,8 @@ public class DishController {
         return "redirect:/dishes/show/" + dish.getId();
     }
 
-    @ModelAttribute("ingredientNames")
-    public List<String> getIngredientNames() {
-        return ingredientService.findAll().stream().map(Ingredient::getName).collect(Collectors.toList());
-    }
-
     @RequestMapping(value = "/dishes/{dishId}/deleteIngredient/{ingredientId}", method = RequestMethod.GET)
-    public String deleteDishFromOrder(@PathVariable("dishId") Integer dishId, @PathVariable("ingredientId") Integer ingredientId) {
+    public String deleteIngredientFromDish(@PathVariable("dishId") Integer dishId, @PathVariable("ingredientId") Integer ingredientId) {
         Dish dish = dishService.findById(dishId);
         List<Ingredient> ingredients = dish.getIngredients();
         Iterator<Ingredient> ingredientIterator = ingredients.iterator();
@@ -108,9 +103,15 @@ public class DishController {
             Ingredient ingredient = ingredientIterator.next();
             if (ingredient.getId()==ingredientId) {
                 ingredientIterator.remove();
+                break;
             }
         }
         dishService.save(dish);
         return "redirect:/dishes/show/" + dish.getId();
+    }
+
+    @ModelAttribute("ingredientNames")
+    public List<String> getIngredientNames() {
+        return ingredientService.findAll().stream().map(Ingredient::getName).collect(Collectors.toList());
     }
 }

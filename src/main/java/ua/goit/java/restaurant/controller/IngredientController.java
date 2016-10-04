@@ -19,7 +19,6 @@ public class IngredientController {
 
     @Autowired
     private IngredientService ingredientService;
-
     private static final Logger LOGGER = LoggerFactory.getLogger(IngredientController.class);
 
 
@@ -55,12 +54,9 @@ public class IngredientController {
 
     @RequestMapping(value = "/ingredients/{id}/update", method = RequestMethod.GET) //POST
     public String updateIngredient(@PathVariable("id") Integer id, ModelMap modelMap) {
+        LOGGER.debug("showUpdateIngredientForm() : {}", id);
         Ingredient ingredient = ingredientService.findById(id);
         modelMap.addAttribute("ingredientForm", ingredient);
         return "/ingredients/ingredientform";
-    }
-
-    public void setIngredientService(IngredientService ingredientService) {
-        this.ingredientService = ingredientService;
     }
 }

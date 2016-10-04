@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <jsp:include page="../fragments/header.jsp"/>
@@ -30,23 +31,23 @@
 
 
 <hr/>
-<h3 style="margin-left: 50px; color: #23527c">Ingredients:</h3>
+<%--<h3 style="margin-left: 50px; color: #23527c; background-color:#ffffff">Ingredients:</h3>--%>
 
 <div style="width: 20%; margin-left: 20px">
-    <table border="0.2" style="align-items: center" class="table table-striped">
-        <thead style="color:#060234; background-color:#ffce29">
+    <table border="0.2" style="align-items: center; background-color:#ffffff" class="table table-hover">
+        <thead style="color: #23527c; background-color:#ffffff">
         <tr>
-            <%--<th>Ingredient</th>--%>
+            <th>Ingredients:</th>
             <th></th>
         </tr>
         </thead>
-
         <c:forEach items="${ingredients}" var="ingredient">
             <tr>
                 <td>${ingredient.name}</td>
 
                 <td style="align-items: center; width: 20px">
-                    <spring:url value="/dishes/${dish.id}/deleteIngredient/${ingredient.id}" var="deleteIngredientFromDishUrl"/>
+                    <spring:url value="/dishes/${dish.id}/deleteIngredient/${ingredient.id}"
+                                var="deleteIngredientFromDishUrl"/>
                     <a href="${deleteIngredientFromDishUrl}">
                         <img src="<c:url value="/resources/images/delete_button_30.jpg"/>"/>
                     </a>
@@ -56,7 +57,7 @@
     </table>
 </div>
 <hr/>
-<br>
+<%--<br>--%>
 
 
 <div>
