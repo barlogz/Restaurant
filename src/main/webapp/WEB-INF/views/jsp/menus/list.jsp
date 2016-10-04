@@ -28,7 +28,7 @@
 
         <c:forEach items="${menus}" var="menu">
             <tr>
-                <td><a href="/menus/show/${menu.name}">${menu.name}</a></td>
+                <td><a href="/menus/show/${menu.id}">${menu.name}</a></td>
                 <%--<td>${menu.dishes}</td>--%>
 
                 <td style="align-items: center; width: 20px">

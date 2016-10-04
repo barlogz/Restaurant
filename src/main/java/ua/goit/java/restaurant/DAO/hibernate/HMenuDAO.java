@@ -25,6 +25,7 @@ public class HMenuDAO implements MenuDAO {
     @Transactional
     public void addDishToMenu(Menu menu, Dish dish) {
         if (!menu.getDishes().contains(dish)) {
+            menu.getDishes().add(dish);
             sessionFactory.getCurrentSession().saveOrUpdate(menu);
         } else {
             throw new RuntimeException("Dish already exist in menu: " + "\"" + menu.getName() + "\"");
@@ -46,7 +47,10 @@ public class HMenuDAO implements MenuDAO {
     @Override
     @Transactional
     public Menu findById(Integer id) {
-        Menu result = sessionFactory.getCurrentSession().get(Menu.class, id);
+//        Menu result = sessionFactory.getCurrentSession().get(Menu.class, id);
+        Query query = sessionFactory.getCurrentSession().createQuery("select m from Menu m where m.id = :id");
+        query.setParameter("id", id);
+        Menu result = (Menu) query.uniqueResult();
         if (result == null) {
             throw new RuntimeException("There is no such Menu with id: " + "\"" + id + "\"");
         }

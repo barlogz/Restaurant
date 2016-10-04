@@ -33,6 +33,13 @@
                 <td>${dishes.dishCategory}</td>
                 <td>${dishes.price}</td>
                 <td>${dishes.weight}</td>
+                <td style="align-items: center; width: 20px">
+                    <spring:url value="/menus/${menu.id}/deleteDish/${dishes.id}"
+                                var="deleteDishFromMenuUrl"/>
+                    <a href="${deleteDishFromMenuUrl}">
+                        <img src="<c:url value="/resources/images/delete_button_30.jpg"/>"/>
+                    </a>
+                </td>
             </tr>
         </c:forEach>
 
@@ -40,7 +47,7 @@
 </div>
 <hr>
 
-<spring:url value="/menus/${menu.name}/addDish" var="menuActionUrl"/>
+<spring:url value="/menus/${menu.id}/addDish" var="menuActionUrl"/>
 
 <form:form action="${menuActionUrl}" modelAttribute="dish" method="post">
 

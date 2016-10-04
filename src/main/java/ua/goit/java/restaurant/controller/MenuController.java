@@ -18,6 +18,7 @@ import ua.goit.java.restaurant.service.interfaces.DishService;
 import ua.goit.java.restaurant.service.interfaces.MenuService;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -47,11 +48,11 @@ public class MenuController {
         return "redirect:/menus/list";
     }
 
-    @RequestMapping(value = "/menus/show/{menuName}", method = RequestMethod.GET)
-    public ModelAndView showMenu(@PathVariable String menuName) {
+    @RequestMapping(value = "/menus/show/{id}", method = RequestMethod.GET)
+    public ModelAndView showMenu(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
 
-        Menu menu = menuService.findByName(menuName);
+        Menu menu = menuService.findById(id);
         modelAndView.addObject("menu", menu);
 
         List<Dish> dishList = menu.getDishes();
@@ -68,18 +69,34 @@ public class MenuController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/menus/{menuName}/addDish", method = RequestMethod.POST)
-    public String addDishToMenu(@PathVariable("menuName") String menuName, @ModelAttribute("dish") Dish dish) {
+    @RequestMapping(value = "/menus/{id}/addDish", method = RequestMethod.POST)
+    public String addDishToMenu(@PathVariable("id") Integer menuId, @ModelAttribute("dish") Dish dish) {
         String dishName = dish.getName();
         Dish thisDish = dishService.findByName(dishName);
-        Menu menu = menuService.findByName(menuName);
-
+        Menu menu = menuService.findById(menuId);
         menuService.addDishToMenu(menu, thisDish);
 //        menu.getDishes().add(thisDish);
-//        menuService.save(menu);
+        menuService.save(menu);
 
-        return "redirect:/menus/show/" + menuName;
+        return "redirect:/menus/show/" + menu.getId();
     }
+
+    @RequestMapping(value = "/menus/{menuId}/deleteDish/{dishId}", method = RequestMethod.GET)
+    public String deleteDishFromOrder(@PathVariable("menuId") Integer menuId, @PathVariable("dishId") Integer dishId) {
+        Menu menu = menuService.findById(menuId);
+        List<Dish> dishes = menu.getDishes();
+        Iterator<Dish> iterator = dishes.iterator();
+        while (iterator.hasNext()) {
+            Dish dish = iterator.next();
+            if(dish.getId()==dishId) {
+                iterator.remove();
+                break;
+            }
+        }
+        menuService.save(menu);
+        return "redirect:/menus/show/" + menu.getId();
+    }
+
 
     @RequestMapping(value = "/menus/{id}/delete", method = RequestMethod.GET)
     public String deleteMenu(@PathVariable("id") Integer id) {
