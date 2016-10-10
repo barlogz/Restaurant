@@ -41,6 +41,12 @@ public class IngredientServiceImpl implements IngredientService{
         return ingredientDAO.findByName(name);
     }
 
+    @Transactional
+    @Override
+    public List<Ingredient> findByNonExactName(String name) {
+        return ingredientDAO.findByNonExactName(name);
+    }
+
     @Override
     @Transactional
     public List<Ingredient> findAll() {

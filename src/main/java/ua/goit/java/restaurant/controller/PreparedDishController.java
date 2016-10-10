@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ua.goit.java.restaurant.model.Dish;
-import ua.goit.java.restaurant.model.DishCategory;
-import ua.goit.java.restaurant.model.Employee;
-import ua.goit.java.restaurant.model.PreparedDish;
+import ua.goit.java.restaurant.model.*;
 import ua.goit.java.restaurant.service.interfaces.DishService;
 import ua.goit.java.restaurant.service.interfaces.EmployeeService;
 import ua.goit.java.restaurant.service.interfaces.PreparedDishService;
+import ua.goit.java.restaurant.service.interfaces.WarehouseService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +28,9 @@ public class PreparedDishController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private WarehouseService warehouseService;
+
     @RequestMapping(value = "/prepared/list", method = RequestMethod.GET)
     public String preparedDishCtrl(ModelMap modelMap) {
         List<PreparedDish> preparedDishes = preparedDishService.findAll();
@@ -38,8 +39,8 @@ public class PreparedDishController {
     }
 
     @RequestMapping(value = "/prepared/list", method = RequestMethod.POST)
-    public String saveOrUpdatePreparedDish(@ModelAttribute("preparedDishForm") @Validated PreparedDish preparedDish, BindingResult result){
-        if(result.hasErrors()) {
+    public String saveOrUpdatePreparedDish(@ModelAttribute("preparedDishForm") @Validated PreparedDish preparedDish, BindingResult result) {
+        if (result.hasErrors()) {
             return "/prepared/prepareddishform";
         }
         String dishName = preparedDish.getDish().getName();
@@ -49,6 +50,16 @@ public class PreparedDishController {
         String cookerName = preparedDish.getCook().getFirstName();
         Employee cooker = employeeService.findByName(cookerName);
         preparedDish.setCook(cooker);
+
+        if (preparedDish.getId() == null) {
+            List<Ingredient> ingredientList = preparedDish.getDish().getIngredients();
+            for (Ingredient ingredient : ingredientList) {
+                Warehouse warehouse = warehouseService.findByName(ingredient.getName());
+                double quantityOfIngredientInWarehouse = warehouse.getQuantity() - 1.0;
+                warehouse.setQuantity(quantityOfIngredientInWarehouse);
+                warehouseService.save(warehouse);
+            }
+        }
 
         preparedDishService.save(preparedDish);
         return "redirect:/prepared/list";
@@ -78,7 +89,6 @@ public class PreparedDishController {
         modelMap.addAttribute("preparedDishForm", preparedDish);
         return "/prepared/prepareddishform";
     }
-
 
 
     @ModelAttribute("cookerNames")

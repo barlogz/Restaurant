@@ -51,6 +51,14 @@ public class HIngredientDAO implements IngredientDAO{
     }
 
     @Override
+    public List<Ingredient> findByNonExactName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select i from Ingredient i where i.name like :name");
+        query.setParameter("name", "%" + name + "%");
+        return query.getResultList();
+    }
+
+    @Override
     @Transactional
     public List<Ingredient> findAll() {
         return sessionFactory.getCurrentSession().createQuery("select i from Ingredient i").list();

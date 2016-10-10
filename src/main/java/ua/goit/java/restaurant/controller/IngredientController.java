@@ -7,12 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ua.goit.java.restaurant.model.Ingredient;
 import ua.goit.java.restaurant.service.interfaces.IngredientService;
+
+import java.util.List;
 
 @Controller
 public class IngredientController {
@@ -58,5 +57,19 @@ public class IngredientController {
         Ingredient ingredient = ingredientService.findById(id);
         modelMap.addAttribute("ingredientForm", ingredient);
         return "/ingredients/ingredientform";
+    }
+
+    @RequestMapping(value = "/ingredients/search", method = RequestMethod.GET)
+    public String searchByName(@RequestParam("name") String name, ModelMap modelMap) {
+        if (name==null || name=="") {
+            return "redirect:/ingredients/list";
+        } else {
+            System.out.println("before creating ingredients");
+            List<Ingredient> ingredientsList = ingredientService.findByNonExactName(name);
+            System.out.println("after creating ingredients");
+            modelMap.addAttribute("ingredients", ingredientsList);
+            System.out.println("after modelMap.addAttribute");
+            return "/ingredients/search";
+        }
     }
 }

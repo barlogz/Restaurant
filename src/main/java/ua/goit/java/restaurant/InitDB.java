@@ -321,6 +321,24 @@ public class InitDB {
         warehouse1.setQuantity(100000.0);
         warehouseDAO.save(warehouse1);
 
+        Warehouse warehouse2 = new Warehouse();
+        warehouse2.setIngredient(pizzaCheese);
+        warehouse2.setMeasure(Measure.GRAM);
+        warehouse2.setQuantity(50000.0);
+        warehouseDAO.save(warehouse2);
+
+        Warehouse warehouse3 = new Warehouse();
+        warehouse3.setIngredient(basil);
+        warehouse3.setMeasure(Measure.PIECES);
+        warehouse3.setQuantity(300.0);
+        warehouseDAO.save(warehouse3);
+
+        Warehouse warehouse4 = new Warehouse();
+        warehouse4.setIngredient(tomatoSauce);
+        warehouse4.setMeasure(Measure.LITER);
+        warehouse4.setQuantity(45.0);
+        warehouseDAO.save(warehouse4);
+
         PreparedDish preparedDish = new PreparedDish();
         preparedDish.setCook(volodymyr);
         preparedDish.setDish(margarita);
@@ -329,33 +347,5 @@ public class InitDB {
 
         System.out.println("*** INIT DB DONE ***");
 
-    }
-
-    public void setEmployeeDAO(EmployeeDAO employeeDAO) {
-        this.employeeDAO = employeeDAO;
-    }
-
-    public void setDishDAO(DishDAO dishDAO) {
-        this.dishDAO = dishDAO;
-    }
-
-    public void setMenuDAO(MenuDAO menuDAO) {
-        this.menuDAO = menuDAO;
-    }
-
-    public void setOrderDAO(OrderDAO orderDAO) {
-        this.orderDAO = orderDAO;
-    }
-
-    public void setIngredientDAO(IngredientDAO ingredientDAO) {
-        this.ingredientDAO = ingredientDAO;
-    }
-
-    public void setWarehouseDAO(WarehouseDAO warehouseDAO) {
-        this.warehouseDAO = warehouseDAO;
-    }
-
-    public void setPreparedDishDAO(PreparedDishDAO preparedDishDAO) {
-        this.preparedDishDAO = preparedDishDAO;
     }
 }

@@ -10,5 +10,6 @@ public interface IngredientDAO {
     void removeAll();
     Ingredient findById(Integer id);
     Ingredient findByName(String name);
+    List<Ingredient> findByNonExactName(String name);
     List<Ingredient> findAll();
 }

@@ -16,5 +16,7 @@ public interface IngredientService {
 
     Ingredient findByName(String name);
 
+    List<Ingredient> findByNonExactName(String name);
+
     List<Ingredient> findAll();
 }

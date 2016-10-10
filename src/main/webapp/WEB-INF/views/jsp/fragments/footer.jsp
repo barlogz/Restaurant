@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <div class="footer navbar-fixed-bottom">
 	<footer>
-		<p tyle="text-align: right">&copy; Roman Didkivskyi 2016</p>
+		<p style="text-align: right; margin-right: 1%">&copy; Roman Didkivskyi 2016</p>
 	</footer>
 </div>
 
