@@ -20,4 +20,6 @@ public interface EmployeeDAO {
     Employee findByNameAndSurname(String firstName, String lastName);
 
     List<Employee> findAll();
+
+    List<Employee> findAllCooks();
 }

@@ -51,6 +51,9 @@ public class PreparedDishController {
         Employee cooker = employeeService.findByName(cookerName);
         preparedDish.setCook(cooker);
 
+        System.out.println("we are in the ADD method");
+        System.out.println(preparedDish.getId());
+
         if (preparedDish.getId() == null) {
             List<Ingredient> ingredientList = preparedDish.getDish().getIngredients();
             for (Ingredient ingredient : ingredientList) {
@@ -76,6 +79,7 @@ public class PreparedDishController {
 
     @RequestMapping(value = "/prepared/add", method = RequestMethod.GET)
     public String addPreparedDish(ModelMap modelMap) {
+        System.out.println("we are in the ADD method");
         PreparedDish preparedDish = new PreparedDish();
         modelMap.addAttribute("preparedDishForm", preparedDish);
         modelMap.addAttribute("listOfDishCategory", DishCategory.values());
@@ -93,7 +97,7 @@ public class PreparedDishController {
 
     @ModelAttribute("cookerNames")
     public List<String> getCookerNames() {
-        return employeeService.findAll().stream().map(Employee::getFirstName).collect(Collectors.toList());
+        return employeeService.findAllCooks().stream().map(Employee::getFirstName).collect(Collectors.toList());
     }
 
     @ModelAttribute("dishNames")

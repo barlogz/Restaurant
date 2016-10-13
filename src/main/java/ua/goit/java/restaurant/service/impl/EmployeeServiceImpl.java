@@ -57,6 +57,12 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employeeDAO.findAll();
     }
 
+    @Override
+    @Transactional
+    public List<Employee> findAllCooks() {
+        return employeeDAO.findAllCooks();
+    }
+
     public void setEmployeeDAO(EmployeeDAO employeeDAO) {
         this.employeeDAO = employeeDAO;
     }
