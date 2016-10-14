@@ -22,4 +22,6 @@ public interface EmployeeDAO {
     List<Employee> findAll();
 
     List<Employee> findAllCooks();
+
+    List<Employee> findAllWaiters();
 }

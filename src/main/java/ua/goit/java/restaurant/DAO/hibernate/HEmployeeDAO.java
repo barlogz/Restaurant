@@ -86,6 +86,12 @@ public class  HEmployeeDAO implements EmployeeDAO {
         return session.createQuery("select e from Employee e where e.position = 'COOK'").list();
     }
 
+    @Override
+    public List<Employee> findAllWaiters() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("select e from Employee e where e.position = 'WAITER'").list();
+    }
+
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
