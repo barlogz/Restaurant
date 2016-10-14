@@ -1,6 +1,7 @@
 package ua.goit.java.restaurant.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "warehouse")
@@ -15,6 +16,7 @@ public class Warehouse {
     private Ingredient ingredient;
 
     @Column(name = "quantity")
+    @Min(0)
     private Double quantity;
 
     @Column(name = "measure")
