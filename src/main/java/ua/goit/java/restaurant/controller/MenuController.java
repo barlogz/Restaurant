@@ -107,7 +107,6 @@ public class MenuController {
     @RequestMapping(value = "menus/add", method = RequestMethod.GET)
     public String showAddMenuForm(Model model) {
         Menu menu = new Menu();
-        menu.setName("new menu");
         model.addAttribute("menuForm", menu);
         return "/menus/menuform";
     }
@@ -117,13 +116,5 @@ public class MenuController {
         Menu menu = menuService.findById(id);
         model.addAttribute("menuForm",menu);
         return "/menus/menuform";
-    }
-
-    public void setMenuService(MenuService menuService) {
-        this.menuService = menuService;
-    }
-
-    public void setDishService(DishService dishService) {
-        this.dishService = dishService;
     }
 }

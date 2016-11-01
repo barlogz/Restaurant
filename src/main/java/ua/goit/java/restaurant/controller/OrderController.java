@@ -40,10 +40,6 @@ public class OrderController {
         modelMap.addAttribute("ordersAttr", orders);
         return "/orders/list";
     }
-//    public String orderCtrl(Model model) {
-//        model.addAttribute("ordersAttr", orderService.findAll());
-//        return "/orders/list";
-//    }
 
     @RequestMapping(value = "/orders/list", method = RequestMethod.POST)
     public String saveOrUpdateOrder(@ModelAttribute("orderForm") @Validated Order order, BindingResult result) {

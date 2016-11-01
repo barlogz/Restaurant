@@ -54,14 +54,18 @@ public class PreparedDishController {
         System.out.println("we are in the ADD method");
         System.out.println(preparedDish.getId());
 
-        if (preparedDish.getId() == null) {
-            List<Ingredient> ingredientList = preparedDish.getDish().getIngredients();
-            for (Ingredient ingredient : ingredientList) {
-                Warehouse warehouse = warehouseService.findByName(ingredient.getName());
-                double quantityOfIngredientInWarehouse = warehouse.getQuantity() - 1.0;
-                warehouse.setQuantity(quantityOfIngredientInWarehouse);
-                warehouseService.save(warehouse);
+        try {
+            if (preparedDish.getId() == null) {
+                List<Ingredient> ingredientList = preparedDish.getDish().getIngredients();
+                for (Ingredient ingredient : ingredientList) {
+                    Warehouse warehouse = warehouseService.findByName(ingredient.getName());
+                    double quantityOfIngredientInWarehouse = warehouse.getQuantity() - 1.0;
+                    warehouse.setQuantity(quantityOfIngredientInWarehouse);
+                    warehouseService.save(warehouse);
+                }
             }
+        } catch (Exception ex) {
+            throw new RuntimeException("Not enough ingredients to prepare this dish");
         }
 
         preparedDishService.save(preparedDish);

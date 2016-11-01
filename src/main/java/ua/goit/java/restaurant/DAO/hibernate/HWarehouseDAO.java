@@ -15,7 +15,11 @@ public class HWarehouseDAO implements WarehouseDAO {
     @Override
     @Transactional
     public void save(Warehouse warehouse) {
-        sessionFactory.getCurrentSession().saveOrUpdate(warehouse);
+        try {
+            sessionFactory.getCurrentSession().saveOrUpdate(warehouse);
+        } catch (Exception e) {
+            throw new RuntimeException("Ingredient already exists!");
+        }
     }
 
     @Override
