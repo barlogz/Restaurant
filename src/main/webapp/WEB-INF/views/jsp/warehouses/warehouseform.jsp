@@ -35,7 +35,7 @@
                 <div class="col-sm-10">
 
                     <form:select path="ingredient.name" class="form-control">
-                        <form:option value="NONE">--SELECT--</form:option>
+                        <%--<form:option value="NONE">--SELECT--</form:option>--%>
                         <form:options items="${ingredientNameList.values()}"/>
                     </form:select>
                 </div>

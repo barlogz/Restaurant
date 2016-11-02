@@ -33,7 +33,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">First Name</label>
                 <div class="col-sm-10">
-                    <form:input path="firstName" type="text" class="form-control" id="firstName" placeholder="firstName" required="required"/>
+                    <form:input path="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" required="required"/>
                     <form:errors path="firstName" class="control-label" />
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Last Name</label>
                 <div class="col-sm-10">
-                    <form:input path="lastName" class="form-control" id="lastName" placeholder="lastName" required="required"/>
+                    <form:input path="lastName" class="form-control" id="lastName" placeholder="Last Name" required="required"/>
                     <form:errors path="lastName" class="control-label" />
                 </div>
             </div>
@@ -53,7 +53,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Birthday</label>
                 <div class="col-sm-10">
-                    <form:input path="birthday" type="date" class="form-control " id="birthday" placeholder="Date" required="required"/>
+                    <form:input path="birthday" type="date" class="form-control " id="birthday" placeholder="Date in format YYYY-MM-DD" required="required"/>
                     <form:errors path="birthday" class="control-label" />
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Phone Number</label>
                 <div class="col-sm-10">
-                    <form:input path="phoneNumber" class="form-control" id="phoneNumber" placeholder="phoneNumber" />
+                    <form:input path="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone Number, like +38(0XX)XXX-XX-XX" />
                     <form:errors path="phoneNumber" class="control-label" />
                 </div>
             </div>
@@ -88,7 +88,7 @@
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label class="col-sm-2 control-label">Salary</label>
                 <div class="col-sm-10">
-                    <form:input path="salary" rows="5" class="form-control" id="salary" placeholder="salary" />
+                    <form:input path="salary" rows="5" class="form-control" id="salary" placeholder="Salary" />
                     <form:errors path="salary" class="control-label">
                         <div id="salary.errors" class="error">Incorrect value!</div>
                     </form:errors>

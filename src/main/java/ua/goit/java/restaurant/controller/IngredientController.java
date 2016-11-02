@@ -22,7 +22,7 @@ public class IngredientController {
 
 
     @RequestMapping(value = "/ingredients/list", method = RequestMethod.GET)
-    private String ingredientCtrl(ModelMap modelMap) {
+    public String ingredientCtrl(ModelMap modelMap) {
         modelMap.addAttribute("ingredients", ingredientService.findAll());
         return "/ingredients/list";
     }
@@ -51,7 +51,7 @@ public class IngredientController {
         return "redirect:/ingredients/list";
     }
 
-    @RequestMapping(value = "/ingredients/{id}/update", method = RequestMethod.GET) //POST
+    @RequestMapping(value = "/ingredients/{id}/update", method = RequestMethod.GET)
     public String updateIngredient(@PathVariable("id") Integer id, ModelMap modelMap) {
         LOGGER.debug("showUpdateIngredientForm() : {}", id);
         Ingredient ingredient = ingredientService.findById(id);
@@ -61,7 +61,7 @@ public class IngredientController {
 
     @RequestMapping(value = "/ingredients/search", method = RequestMethod.GET)
     public String searchByName(@RequestParam("name") String name, ModelMap modelMap) {
-        if (name==null || name=="") {
+        if (name == null || name == "") {
             return "redirect:/ingredients/list";
         } else {
             System.out.println("before creating ingredients");

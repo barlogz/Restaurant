@@ -27,7 +27,7 @@
 
     <form:form class="form-horizontal" method="post" modelAttribute="dishForm" action="${dishActionUrl}">
 
-        <form:errors path="*" cssClass="errorblock" element="div"/>
+        <%--<form:errors path="*" cssClass="errorblock" element="div"/>--%>
 
         <form:hidden path="id"/>
 

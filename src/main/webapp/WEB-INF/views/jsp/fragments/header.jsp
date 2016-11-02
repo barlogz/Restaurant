@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <head>
-    <title>Spring MVC Form Handling Example</title>
+    <title>Restaurant Una Pizza Napoletana</title>
 
     <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCss"/>
     <link href="${bootstrapCss}" rel="stylesheet"/>
@@ -13,13 +13,13 @@
 
     <style>
         .error {
-            color: #ffa91b;
+            color: #ff0000;
         }
 
         .errorblock {
             color: #000;
             background-color: #ffEEEE;
-            border: 3px solid #ffce29;
+            border: 3px solid #ff0000;
             padding: 8px;
             margin: 16px;
         }

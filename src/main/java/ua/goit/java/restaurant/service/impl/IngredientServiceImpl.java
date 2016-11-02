@@ -18,9 +18,13 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
-    @Transactional
     public void remove(Ingredient ingredient) {
-        ingredientDAO.remove(ingredient);
+        try {
+            ingredientDAO.remove(ingredient);
+        } catch (Exception ex) {
+            throw new RuntimeException("Can't delete ingredient. " +
+                    "This ingredient is present in the dishes or in the warehouse!");
+        }
     }
 
     @Override

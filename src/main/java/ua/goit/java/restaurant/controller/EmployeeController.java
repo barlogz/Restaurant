@@ -16,7 +16,6 @@ import ua.goit.java.restaurant.model.Employee;
 import ua.goit.java.restaurant.model.Position;
 import ua.goit.java.restaurant.service.interfaces.EmployeeService;
 
-import java.sql.Date;
 import java.util.Map;
 
 @Controller
@@ -70,13 +69,6 @@ public class EmployeeController {
             model.addAttribute("listOfPositions", Position.values());
 
             Employee employee = new Employee();
-
-            employee.setFirstName("Best");
-            employee.setLastName("Admin");
-            employee.setBirthday(Date.valueOf("1901-01-31"));
-            employee.setPhoneNumber("+38(099)999-00-01");
-            employee.setPosition(Position.ADMINISTRATOR);
-            employee.setSalary(1000000);
 
             model.addAttribute("employeeForm", employee);
             return "/employees/employeeform";

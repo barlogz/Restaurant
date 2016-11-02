@@ -4,7 +4,7 @@
 
 <head>
 
-    <title>Restaurant</title>
+    <title>Restaurant Una Pizza Napoletana</title>
 
     <spring:url value="/resources/css/bootstrap.css" var="bootstrapCss"/>
     <link href="${bootstrapCss}" rel="stylesheet"/>
@@ -60,56 +60,56 @@
 </a>
 <hr>
 
-<nav class="navbar navbar-light" style="background-color: peachpuff; border: solid mediumblue">
+<nav class="navbar navbar-light" style="background-color: peachpuff; border: solid #0f1e6f">
     <ul class="nav navbar-nav">
 
         <li class="nav-item active">
             <a class="nav-link" href="/admin/menus/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">Меню</h4>
+                <h4 style="color: #0f1e6f; font-weight: bold">Меню</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/dishes/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">Блюда</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Блюда</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/employees/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">Персонал</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Персонал</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/warehouses/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">Склад</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Склад</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/orders/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">История заказов</h4>
+                <h4 style="color: #0000a7; font-weight: bold">История заказов</h4>
             </a>
         </li>
 
 
         <li class="nav-item">
             <a class="nav-link" href="/admin/prepared/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">Приготовленные блюда</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Приготовленные блюда</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/ingredients/list">
-                <h4 style="color: #0f0f0f; font-weight: bold">Ингридиенты</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Ингридиенты</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/rest/rest">
-                <h4 style="color: #0f0f0f; font-weight: bold">REST</h4>
+                <h4 style="color: #0000a7; font-weight: bold">REST</h4>
             </a>
         </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
             <a class="nav-link" href="/">
-                <h4 style="font-weight: bold"><span style="margin-right: 100px; color: #0f0f0f">Site</span></h4>
+                <h4 style="font-weight: bold"><span style="margin-right: 100px; color: #0000a7">Site</span></h4>
             </a>
         </li>
     </ul>

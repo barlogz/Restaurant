@@ -44,7 +44,28 @@ public class DishController {
         if (result.hasErrors()) {
             return "/dishes/dishform";
         }
-        dishService.save(dish);
+        try {
+            if (dish.getId()!=null) {
+                Dish updatedDish = dishService.findById(dish.getId());
+
+                updatedDish.setIngredients(updatedDish.getIngredients());
+                updatedDish.setName(dish.getName());
+                updatedDish.setDishCategory(dish.getDishCategory());
+                updatedDish.setWeight(dish.getWeight());
+                updatedDish.setPrice(dish.getPrice());
+                updatedDish.setDescription(dish.getDescription());
+                updatedDish.setMenu(dish.getMenu());
+                updatedDish.setOrder(dish.getOrder());
+
+                dishService.save(updatedDish);
+
+            } else {
+                dishService.save(dish);
+            }
+        }catch (Exception ex) {
+            throw new RuntimeException("There is a dish with such name already!");
+        }
+
         return "redirect:/dishes/list";
     }
 
