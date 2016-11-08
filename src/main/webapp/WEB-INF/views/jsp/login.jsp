@@ -22,7 +22,7 @@
                 <input type="text" placeholder="USER: admin" required="" id="username" name="ssoId" />
             </div>
             <div>
-                <input type="password" placeholder="PASSWORD: pizza" required="" id="password" name="password"/>
+                <input type="password" placeholder="PASSWORD: admin" required="" id="password" name="password"/>
             </div>
             <input type="hidden" name="${_csrf.parameterName}" 	value="${_csrf.token}" />
             <div>
