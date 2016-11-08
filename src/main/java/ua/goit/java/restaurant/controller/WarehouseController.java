@@ -29,29 +29,29 @@ public class WarehouseController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Warehouse.class);
 
-    @RequestMapping(value = "/warehouses/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/warehouses/list", method = RequestMethod.GET)
     public String warehouseCtrl(Model model) {
         List<Warehouse> warehouses = warehouseService.findAll();
         /*for (Warehouse warehouse : warehouses) {
             System.out.println(warehouse.toString());
         }*/
         model.addAttribute("warehouses", warehouses);
-        return "/warehouses/list";
+        return "/admin/warehouses/list";
     }
 
-    @RequestMapping(value = "/warehouses/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/warehouses/list", method = RequestMethod.POST)
     public String saveOrUpdateWarehouse(@ModelAttribute("warehouseForm") @Validated Warehouse warehouse, BindingResult result) {
         if (result.hasErrors()) {
-            return "/warehouses/warehouseform";
+            return "/admin/warehouses/warehouseform";
         }
         String ingrName = warehouse.getIngredient().getName();
         Ingredient actualIngredient = ingredientService.findByName(ingrName);
         warehouse.setIngredient(actualIngredient);
         warehouseService.save(warehouse);
-        return "redirect:/warehouses/list";
+        return "redirect:/admin/warehouses/list";
     }
 
-    @RequestMapping(value = "warehouses/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/warehouses/add", method = RequestMethod.GET)
     public String showAddWarehouseForm(ModelMap modelMap) {
 
         Warehouse warehouse = new Warehouse();
@@ -64,34 +64,34 @@ public class WarehouseController {
         }
         modelMap.addAttribute("ingredientNameList", ingredientMap);
 
-        return "/warehouses/warehouseform";
+        return "/admin/warehouses/warehouseform";
     }
 
 
-    @RequestMapping(value = "/warehouses/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/warehouses/{id}/update", method = RequestMethod.GET)
     public String showAddWarehouseForm(@PathVariable("id") Integer id, ModelMap modelMap) {
         LOGGER.debug("showUpdateWarehouseForm() : {}", id);
         modelMap.addAttribute("measures", Measure.values());
         Warehouse warehouse = warehouseService.load(id);
         modelMap.addAttribute("warehouseForm", warehouse);
-        return "/warehouses/warehouseformupdate";
+        return "/admin/warehouses/warehouseformupdate";
     }
 
 
-    @RequestMapping(value = "/warehouses/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/warehouses/{id}/delete", method = RequestMethod.GET)
     public String deleteWarehouseCtrl(@PathVariable("id") Integer id) {
         warehouseService.remove(warehouseService.load(id));
-        return "redirect:/warehouses/list";
+        return "redirect:/admin/warehouses/list";
     }
 
-    @RequestMapping(value = "/warehouses/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/warehouses/search", method = RequestMethod.GET)
     public String searchByName(@RequestParam("name") String name, ModelMap modelMap) {
         if (name==null || name=="") {
-            return "redirect:/warehouses/list";
+            return "redirect:/admin/warehouses/list";
         } else {
             Warehouse warehouse = warehouseService.findByName(name);
             modelMap.addAttribute("warehouse", warehouse);
-            return "/warehouses/search";
+            return "/admin/warehouses/search";
         }
     }
 }

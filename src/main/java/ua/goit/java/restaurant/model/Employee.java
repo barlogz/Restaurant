@@ -41,7 +41,7 @@ public class Employee implements Serializable{
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "biography")
+    @Column(name = "biography",  columnDefinition = "text")
     private String biography;
 
     @Column(name = "content")
@@ -50,6 +50,8 @@ public class Employee implements Serializable{
     private byte[] content;
 
 //    for mapping
+
+    @JsonIgnore
     @OneToMany(mappedBy = "waiter")
     private List<Order> orders;
 
@@ -68,6 +70,7 @@ public class Employee implements Serializable{
         this.content = content;
     }
 
+    @JsonIgnore
     public boolean isNew() {
         return (this.id == null);
     }

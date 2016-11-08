@@ -33,22 +33,22 @@ public class MenuController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
 
-    @RequestMapping(value = "/menus/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/menus/list", method = RequestMethod.GET)
     public String menuCtrl(Model model) {
         model.addAttribute("menus", menuService.findAll());
-        return "menus/list";
+        return "/admin/menus/list";
     }
 
-    @RequestMapping(value = "/menus/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/menus/list", method = RequestMethod.POST)
     public String saveOrUpdateMenu(@ModelAttribute("menuForm") @Validated Menu menu, BindingResult result) {
         if (result.hasErrors()) {
-            return "/menus/menuform";
+            return "/admin/menus/menuform";
         }
         menuService.save(menu);
-        return "redirect:/menus/list";
+        return "redirect:/admin/menus/list";
     }
 
-    @RequestMapping(value = "/menus/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/menus/show/{id}", method = RequestMethod.GET)
     public ModelAndView showMenu(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -65,11 +65,11 @@ public class MenuController {
         }
         modelAndView.addObject("dishNameList", dishNameList);
 
-        modelAndView.setViewName("/menus/show");
+        modelAndView.setViewName("/admin/menus/show");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/menus/{id}/addDish", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/menus/{id}/addDish", method = RequestMethod.POST)
     public String addDishToMenu(@PathVariable("id") Integer menuId, @ModelAttribute("dish") Dish dish) {
         String dishName = dish.getName();
         Dish thisDish = dishService.findByName(dishName);
@@ -78,10 +78,10 @@ public class MenuController {
 //        menu.getDishes().add(thisDish);
         menuService.save(menu);
 
-        return "redirect:/menus/show/" + menu.getId();
+        return "redirect:/admin/menus/show/" + menu.getId();
     }
 
-    @RequestMapping(value = "/menus/{menuId}/deleteDish/{dishId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/menus/{menuId}/deleteDish/{dishId}", method = RequestMethod.GET)
     public String deleteDishFromOrder(@PathVariable("menuId") Integer menuId, @PathVariable("dishId") Integer dishId) {
         Menu menu = menuService.findById(menuId);
         List<Dish> dishes = menu.getDishes();
@@ -94,27 +94,27 @@ public class MenuController {
             }
         }
         menuService.save(menu);
-        return "redirect:/menus/show/" + menu.getId();
+        return "redirect:/admin/menus/show/" + menu.getId();
     }
 
 
-    @RequestMapping(value = "/menus/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/menus/{id}/delete", method = RequestMethod.GET)
     public String deleteMenu(@PathVariable("id") Integer id) {
         menuService.remove(menuService.findById(id));
-        return "redirect:/menus/list";
+        return "redirect:/admin/menus/list";
     }
 
-    @RequestMapping(value = "menus/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/menus/add", method = RequestMethod.GET)
     public String showAddMenuForm(Model model) {
         Menu menu = new Menu();
         model.addAttribute("menuForm", menu);
-        return "/menus/menuform";
+        return "/admin/menus/menuform";
     }
 
-    @RequestMapping(value = "menus/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/menus/{id}/update", method = RequestMethod.GET)
     public String updateMenu(@PathVariable Integer id, Model model) {
         Menu menu = menuService.findById(id);
         model.addAttribute("menuForm",menu);
-        return "/menus/menuform";
+        return "/admin/menus/menuform";
     }
 }

@@ -30,20 +30,8 @@
 <spring:url value="/login" var="login"/>
 <spring:url value="/logout" var="logout"/>
 <spring:url value="/users/add" var="urlAddUser"/>
-
-<%--<nav class="navbar navbar-inverse ">
-	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="${login}">Log in</a>
-		</div>
-		<div id="logbar">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${logout}">Log out</a></li>
-			</ul>
-		</div>
-	</div>
-</nav>--%>
-
+<spring:url value="/" var="index"/>
+<spring:url value="/admin/menus/list" var="admin"/>
 
 <img src="<c:url value="/resources/images/logo_small_blue.png"/>" class="img-responsive center-block"/>
 
@@ -57,43 +45,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/employees/list">
-                <h4>Our Staff</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menus/list">
-                <h4>Menu</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/dishes/list">
-                <h4>Dishes</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/orders/list">
-                <h4>Orders</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/prepared/list">
-                <h4>Cooked dishes</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/warehouses/list">
-                <h4>Warehouse</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ingredients/list">
-                <h4>Ingredients</h4>
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="/schema/tables">
                 <h4>Pizzeria scheme</h4>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/ouremployees/list">
+                <h4>Our Staff</h4>
             </a>
         </li>
         <li class="nav-item">
@@ -102,5 +60,13 @@
             </a>
         </li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/menus/list">
+                <h4 style="font-weight: bold"><span style="margin-right: 100px">Admin</span></h4>
+            </a>
+        </li>
+    </ul>
 
 </nav>
+

@@ -1,5 +1,6 @@
 package ua.goit.java.restaurant.controller;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import ua.goit.java.restaurant.model.Employee;
 import ua.goit.java.restaurant.model.Position;
 import ua.goit.java.restaurant.service.interfaces.EmployeeService;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Controller
@@ -26,61 +28,69 @@ public class EmployeeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
 
-    @RequestMapping(value = "employees/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/employees/list", method = RequestMethod.GET)
     public String listEmployees(Map<String, Object> model) {
         model.put("employees", employeeService.findAll());
-        return "/employees/list";
+        return "/admin/employees/list";
     }
 
-    @RequestMapping(value = "employees/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/employees/list", method = RequestMethod.POST)
     public String saveOrUpdateEmployee(@ModelAttribute("employeeForm")
                                            @Validated Employee employee, BindingResult result) {
         if (result.hasErrors()) {
-            return "employees/employeeform";
+            return "/admin/employees/employeeform";
         } else {
             employeeService.save(employee);
-            // POST/REDIRECT/GET
-            // return "redirect:/employee/" + employee.getName();
-            return "redirect:/employees/list";
+            return "redirect:/admin/employees/list";
 
-            // POST/FORWARD/GET
-            // return "employees/list";
         }
     }
 
-    @RequestMapping(value = "/employees/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/employees/show/{id}", method = RequestMethod.GET)
     public ModelAndView showEmployee(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("employee", employeeService.findByID(id));
-        modelAndView.setViewName("/employees/show");
+        Employee employee = employeeService.findByID(id);
+        modelAndView.addObject("employee", employee);
+
+        if (employee.getContent() != null) {
+            byte[] encoded = Base64.encodeBase64(employeeService.findByID(id).getContent());
+            try {
+                String encodedString = new String(encoded, "UTF-8");
+                modelAndView.addObject("photo", encodedString);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException("Can't display image!");
+            }
+        }
+
+        modelAndView.setViewName("/admin/employees/show");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/employees/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/employees/{id}/delete", method = RequestMethod.GET)
     public String deleteEmployee(@PathVariable("id") Integer id) {
         Employee employee = employeeService.findByID(id);
         employeeService.remove(employee);
 
-        return "redirect:/employees/list";
+        return "redirect:/admin/employees/list";
     }
 
-        @RequestMapping(value = "/employees/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/employees/add", method = RequestMethod.GET)
     public String showAddEmployeeForm(Model model) {
-            model.addAttribute("listOfPositions", Position.values());
+        model.addAttribute("listOfPositions", Position.values());
 
-            Employee employee = new Employee();
+        Employee employee = new Employee();
 
-            model.addAttribute("employeeForm", employee);
-            return "/employees/employeeform";
+        model.addAttribute("employeeForm", employee);
+        return "/admin/employees/employeeform";
     }
 
-    @RequestMapping(value = "/employees/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/employees/{id}/update", method = RequestMethod.GET)
     public String showUpdateEmployeeForm(@PathVariable("id") Integer id, Model model) {
 
         LOGGER.debug("showUpdateEmployeeForm() : {}", id);
 
         Employee employee = employeeService.findByID(id);
         model.addAttribute("employeeForm", employee);
-        return "/employees/employeeform";
+        return "/admin/employees/employeeform";
     }
- }
+}

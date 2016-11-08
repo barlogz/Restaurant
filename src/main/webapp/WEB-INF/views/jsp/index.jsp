@@ -6,28 +6,35 @@
 <body style="background-color:#c3f3f9;">
 
 <div style="margin-left: 15px">
-    <table style="width: auto">
+    <table style="width: 600px">
+
         <tr style="vertical-align:top">
             <td>
                 <img style="margin-right: 15px" src="<c:url value="/resources/images/logo_pizza.jpg"/>">
-            </td>
-            <td style="margin-top: 25px">
+
+
+        <%--<tr style="vertical-align:top">--%>
+            <%--<td style="margin-top: 25px">--%>
                 <div style="margin-top: 5px">
                     <div style="text-align: center">
                     </div>
-                    <h4 style="width: 620px">
-                        <p style="text-align: justify"> &nbsp; Una Pizza Napoletana opened its doors in Ukraine in 1992. A
+                    <h4 style="width: 600px">
+                        <p style="text-align: justify"> &nbsp; Una Pizza Napoletana opened its doors in Ukraine in 1992.
+                            A
                             classical Italian pizza retains its taste for only 15 minutes after it’s prepared.
                             That’s why restaurants which specialise in making thin crust pizza often don’t have
                             home delivery of their products.</p>
-                        <p style="text-align: justify"> &nbsp; Because of our original recipes, which were developed by well
-                            known chefs in Italy, Canada and Ukraine, Vesuvio Pizza is the best.  Our pizzas are great,
+                        <p style="text-align: justify"> &nbsp; Because of our original recipes, which were developed by
+                            well
+                            known chefs in Italy, Canada and Ukraine, Vesuvio Pizza is the best. Our pizzas are great,
                             whether eaten fresh or even out of the fridge.</p>
-                        <p style="text-align: justify"> &nbsp; Our first pizzeria opened in the summer of 1994.  Located at
+                        <p style="text-align: justify"> &nbsp; Our first pizzeria opened in the summer of 1994. Located
+                            at
                             Reitarska 25, it is near Kyiv’s historical sites – the St. Sophia Cathedral and the
                             Golden Gates.</p>
-                        <p style="text-align: justify"> &nbsp; Una Pizza Napoletana is a favourite of Kyivans and visitors to
-                            this city, who appreciate our Italian kitchen, good music and great service.  And even
+                        <p style="text-align: justify"> &nbsp; Una Pizza Napoletana is a favourite of Kyivans and
+                            visitors to
+                            this city, who appreciate our Italian kitchen, good music and great service. And even
                             though a great deal has changed over the 20 years since we first started, our
                             quality continues to retain its high level.</p>
                     </h4>
@@ -46,7 +53,56 @@
 
 
                 </div>
-            </td>
+            <%--</td>--%>
+
+        <%--</tr>--%>
+        </td>
+
+        <td width="65%">
+            <div style="text-align: center">
+                <img src="<c:url value="/resources/images/text-menu-ourmenu_283.png"/>">
+            </div>
+            <%--<br>--%>
+
+            <div style="text-align: left">
+                <spring:url value="/search" var="indexActionUrl"/>
+                <form:form class="form-horizontal" method="get" action="${indexActionUrl}">
+                    <div class="container">
+                        <div class="row">
+                                <%-- <h4>  Search by name</h4>--%>
+                            <div class="search">
+                                    <%--<form:input path="searchingName" type="text" class="form-control input-sm" id="searchingName" placeholder="Search" />--%>
+                                <input type="text" class="form-control input-sm" name="name"
+                                       placeholder="Input the name"/>
+                                <button type="submit" class="btnn btn-primary btn-sm">Search dish</button>
+                            </div>
+                        </div>
+                    </div>
+                </form:form>
+            </div>
+
+            <br>
+            <table border="0.2" style="align-items: center" class="table table-striped">
+                <thead style="color:#0b0776;background-color:#f3eca5">
+                <tr>
+                    <th width="200px">Dish name</th>
+                    <th width="100px">Price, UAH.</th>
+                    <th width="100px">Weight, gr.</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+
+                <c:forEach items="${dishes}" var="dish">
+                    <tr>
+                        <td><a href="/showdish/${dish.name}">${dish.name}</a></td>
+                        <td>${dish.price}</td>
+                        <td>${dish.weight}</td>
+                        <td>${dish.description}</td>
+                    </tr>
+
+                </c:forEach>
+            </table>
+        </td>
         </tr>
     </table>
 

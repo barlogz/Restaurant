@@ -33,16 +33,16 @@ public class DishController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DishController.class);
 
-    @RequestMapping(value = "/dishes/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/dishes/list", method = RequestMethod.GET)
     public String dishesCtrl(Model model) {
         model.addAttribute("dish", dishService.findAll());
-        return "/dishes/list";
+        return "/admin/dishes/list";
     }
 
-    @RequestMapping(value = "/dishes/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/dishes/list", method = RequestMethod.POST)
     public String saveOrUpdateDish(@ModelAttribute("dishForm") @Validated Dish dish, BindingResult result) {
         if (result.hasErrors()) {
-            return "/dishes/dishform";
+            return "/admin/dishes/dishform";
         }
         try {
             if (dish.getId()!=null) {
@@ -66,10 +66,10 @@ public class DishController {
             throw new RuntimeException("There is a dish with such name already!");
         }
 
-        return "redirect:/dishes/list";
+        return "redirect:/admin/dishes/list";
     }
 
-    @RequestMapping(value = "dishes/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/dishes/show/{id}", method = RequestMethod.GET)
     public ModelAndView showDish(@PathVariable Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         Dish dish = dishService.findById(id);
@@ -78,44 +78,44 @@ public class DishController {
         modelAndView.addObject("ingredients", dish.getIngredients());
         modelAndView.addObject("ingredient", new Ingredient());
 
-        modelAndView.setViewName("dishes/show");
+        modelAndView.setViewName("/admin/dishes/show");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/dishes/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/dishes/{id}/delete", method = RequestMethod.GET)
     public String deleteDishCtrl(@PathVariable("id") Integer id) {
         Dish dish = dishService.findById(id);
         dishService.remove(dish);
-        return "redirect:/dishes/list";
+        return "redirect:/admin/dishes/list";
     }
 
-    @RequestMapping(value = "/dishes/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/dishes/add", method = RequestMethod.GET)
     public String showAddDishForm(Model model) {
         model.addAttribute("listOfDishCategory", DishCategory.values());
         Dish dish = new Dish();
         model.addAttribute("dishForm", dish);
-        return "/dishes/dishform";
+        return "/admin/dishes/dishform";
     }
 
-    @RequestMapping(value = "/dishes/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/dishes/{id}/update", method = RequestMethod.GET)
     public String showAddDishForm(@PathVariable("id") Integer id, Model model) {
         LOGGER.debug("showUpdateDishForm() : {}", id);
         Dish dish = dishService.findById(id);
         model.addAttribute("dishForm", dish);
-        return "/dishes/dishform";
+        return "/admin/dishes/dishform";
     }
 
-    @RequestMapping(value = "/dish/{id}/addIngredient", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/dish/{id}/addIngredient", method = RequestMethod.POST)
     public String addIngredientToDish(@PathVariable("id") Integer id, @ModelAttribute("ingredient") Ingredient ingredient) {
         String ingredientName = ingredient.getName();
         Ingredient thisIngredient= ingredientService.findByName(ingredientName);
         Dish dish = dishService.findById(id);
         dish.getIngredients().add(thisIngredient);
         dishService.save(dish);
-        return "redirect:/dishes/show/" + dish.getId();
+        return "redirect:/admin/dishes/show/" + dish.getId();
     }
 
-    @RequestMapping(value = "/dishes/{dishId}/deleteIngredient/{ingredientId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/dishes/{dishId}/deleteIngredient/{ingredientId}", method = RequestMethod.GET)
     public String deleteIngredientFromDish(@PathVariable("dishId") Integer dishId, @PathVariable("ingredientId") Integer ingredientId) {
         Dish dish = dishService.findById(dishId);
         List<Ingredient> ingredients = dish.getIngredients();
@@ -128,7 +128,7 @@ public class DishController {
             }
         }
         dishService.save(dish);
-        return "redirect:/dishes/show/" + dish.getId();
+        return "redirect:/admin/dishes/show/" + dish.getId();
     }
 
     @ModelAttribute("ingredientNames")

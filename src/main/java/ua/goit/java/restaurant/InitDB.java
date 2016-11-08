@@ -57,9 +57,19 @@ public class InitDB {
         iryna.setPhoneNumber("+38(099)999-00-11");
         iryna.setPosition(Position.WAITER);
         iryna.setSalary(160000);
+        iryna.setBiography("Just a best waiter!");
         employeeDAO.save(iryna);
 
-//        /**NOT IMPLEMENTED CLASS YET**/
+        Employee anna = new Employee();
+        anna.setFirstName("Anna");
+        anna.setLastName("Drob");
+        anna.setBirthday(Date.valueOf("1993-01-12"));
+        anna.setPhoneNumber("+38(099)999-00-12");
+        anna.setPosition(Position.WAITER);
+        anna.setSalary(155000);
+        anna.setBiography("Just another best waiter!");
+        employeeDAO.save(anna);
+
         Cook volodymyr = new Cook();
         volodymyr.setFirstName("Volodymyr");
         volodymyr.setLastName("Petrenko");
@@ -68,6 +78,26 @@ public class InitDB {
         volodymyr.setPosition(Position.COOK);
         volodymyr.setSalary(200000);
         employeeDAO.save(volodymyr);
+
+        Cook vadim = new Cook();
+        vadim.setFirstName("Vadim");
+        vadim.setLastName("Pydgaychenko");
+        vadim.setBirthday(Date.valueOf("1990-01-09"));
+        vadim.setPhoneNumber("+38(099)999-00-09");
+        vadim.setPosition(Position.COOK);
+        vadim.setSalary(200000);
+        employeeDAO.save(vadim);
+
+        Cook oleg = new Cook();
+        oleg.setFirstName("Oleg");
+        oleg.setLastName("Stepanenko");
+        oleg.setBirthday(Date.valueOf("1978-01-10"));
+        oleg.setPhoneNumber("+38(099)999-00-10");
+        oleg.setPosition(Position.COOK);
+        oleg.setSalary(200001);
+        employeeDAO.save(oleg);
+
+
 
         Ingredient dough = new Ingredient();
         dough.setName("dough");
@@ -294,8 +324,42 @@ public class InitDB {
         margarita.setPrice(158);
         margarita.setWeight(1250);
         margarita.setIngredients(margaritaIngredients);
+        margarita.setDescription("The classic. Italian tomatoes, cheese and basil.");
+
+        List<Ingredient> fourCheeseIngredients = new ArrayList<>();
+        fourCheeseIngredients.add(dough);
+        fourCheeseIngredients.add(whiteSauce);
+        fourCheeseIngredients.add(pizzaCheese);
+        fourCheeseIngredients.add(mozzarellaCheese);
+        fourCheeseIngredients.add(fetaCheese);
+        fourCheeseIngredients.add(parmesanCheese);
+        fourCheeseIngredients.add(oregano);
+
+        Dish fourCheese = new Dish();
+        fourCheese.setName("FOUR CHEESE");
+        fourCheese.setDishCategory(DishCategory.PIZZA);
+        fourCheese.setPrice(226);
+        fourCheese.setWeight(1450);
+        fourCheese.setIngredients(fourCheeseIngredients);
+        fourCheese.setDescription("This is the classic version of one of the most wonderful combinations of bread and cheese imaginable");
+
+        List<Ingredient> caesarSaladIngredients = new ArrayList<>();
+        caesarSaladIngredients.add(lettuces);
+        caesarSaladIngredients.add(croutons);
+        caesarSaladIngredients.add(parmesanCheese);
+        caesarSaladIngredients.add(saladDressing);
+
+        Dish caesarSalad = new Dish();
+        caesarSalad.setName("CAESAR SALAD");
+        caesarSalad.setDishCategory(DishCategory.SALADS);
+        caesarSalad.setPrice(70);
+        caesarSalad.setWeight(180);
+        caesarSalad.setIngredients(caesarSaladIngredients);
+        caesarSalad.setDescription("A selection of lettuces, croutons, parmezan, and our own Caesar salad dressing");
 
         dishDAO.save(margarita);
+        dishDAO.save(fourCheese);
+        dishDAO.save(caesarSalad);
 
         List<Dish> pizzaDishes = new ArrayList<>();
         pizzaDishes.add(margarita);

@@ -22,4 +22,6 @@ public interface EmployeeService {
     List<Employee> findAll();
 
     List<Employee> findAllCooks();
+
+    List<Employee> findAllWaiters();
 }

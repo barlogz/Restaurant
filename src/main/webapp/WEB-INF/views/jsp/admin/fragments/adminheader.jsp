@@ -47,7 +47,7 @@
 
 <nav class="navbar navbar-inverse ">
     <div class="container">
-        <div id="logbar">
+        <div id="edit_button_30.jpg">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/logout">Logout</a></li>
             </ul>
@@ -60,44 +60,44 @@
 </a>
 <hr>
 
-<nav class="navbar navbar-light" style="background-color: peachpuff; border: solid #0f1e6f">
+<nav class="navbar navbar-light" style="background-color: peachpuff; border: solid #0000a7">
     <ul class="nav navbar-nav">
 
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/employees/list">
+                <h4 style="color: #0000a7; font-weight: bold">Our Staff</h4>
+            </a>
+        </li>
         <li class="nav-item active">
             <a class="nav-link" href="/admin/menus/list">
-                <h4 style="color: #0f1e6f; font-weight: bold">Меню</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Menu</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/dishes/list">
-                <h4 style="color: #0000a7; font-weight: bold">Блюда</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/employees/list">
-                <h4 style="color: #0000a7; font-weight: bold">Персонал</h4>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/warehouses/list">
-                <h4 style="color: #0000a7; font-weight: bold">Склад</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Dishes</h4>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/admin/orders/list">
-                <h4 style="color: #0000a7; font-weight: bold">История заказов</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Orders</h4>
             </a>
         </li>
 
 
         <li class="nav-item">
             <a class="nav-link" href="/admin/prepared/list">
-                <h4 style="color: #0000a7; font-weight: bold">Приготовленные блюда</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Cooked dishes</h4>
             </a>
         </li>
         <li class="nav-item">
+        <a class="nav-link" href="/admin/warehouses/list">
+        <h4 style="color: #0000a7; font-weight: bold">Warehouse</h4>
+        </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="/admin/ingredients/list">
-                <h4 style="color: #0000a7; font-weight: bold">Ингридиенты</h4>
+                <h4 style="color: #0000a7; font-weight: bold">Ingredients</h4>
             </a>
         </li>
         <li class="nav-item">

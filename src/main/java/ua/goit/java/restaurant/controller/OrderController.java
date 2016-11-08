@@ -34,17 +34,17 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/orders/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orders/list", method = RequestMethod.GET)
     public String orderCtrl(ModelMap modelMap) {
         List<Order> orders = orderService.findAll();
         modelMap.addAttribute("ordersAttr", orders);
-        return "/orders/list";
+        return "/admin/orders/list";
     }
 
-    @RequestMapping(value = "/orders/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/orders/list", method = RequestMethod.POST)
     public String saveOrUpdateOrder(@ModelAttribute("orderForm") @Validated Order order, BindingResult result) {
         if (result.hasErrors()) {
-            return "/orders/orderform";
+            return "/admin/orders/orderform";
         }
 
         if(order.getId()!=null) {
@@ -63,17 +63,17 @@ public class OrderController {
             order.setWaiter(waiter);
             orderService.save(order);
         }
-        return "redirect:/orders/list";
+        return "redirect:/admin/orders/list";
     }
 
-    @RequestMapping(value = "/orders/{id}/delete")
+    @RequestMapping(value = "/admin/orders/{id}/delete")
     public String deleteCtrl(@PathVariable("id") Integer id) {
         Order order = orderService.findById(id);
         orderService.remove(order);
-        return "redirect:/orders/list";
+        return "redirect:/admin/orders/list";
     }
 
-    @RequestMapping(value = "/orders/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orders/show/{id}", method = RequestMethod.GET)
     public ModelAndView showOrder(@PathVariable("id") Integer id) {
         ModelAndView modelAndView = new ModelAndView();
         Order order = orderService.findById(id);
@@ -85,12 +85,12 @@ public class OrderController {
         modelAndView.addObject("dish", new Dish());
 
 
-        modelAndView.setViewName("/orders/show");
+        modelAndView.setViewName("/admin/orders/show");
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/orders/{id}/addDish", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/orders/{id}/addDish", method = RequestMethod.POST)
     public String addDishToOrder(@PathVariable("id") Integer id, @ModelAttribute("dish") Dish dish) {
         String dishName = dish.getName();
         Dish thisDish = dishService.findByName(dishName);
@@ -105,10 +105,10 @@ public class OrderController {
 //        order.setDishes(dishes);
 
         orderService.save(order);
-        return "redirect:/orders/show/" + order.getId();
+        return "redirect:/admin/orders/show/" + order.getId();
     }
 
-    @RequestMapping(value = "/orders/{orderId}/deleteDish/{dishId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orders/{orderId}/deleteDish/{dishId}", method = RequestMethod.GET)
     public String deleteDishFromOrder(@PathVariable("orderId") Integer orderId, @PathVariable("dishId") Integer dishId) {
         Order order = orderService.findById(orderId);
         List<Dish> dishes = order.getDishes();
@@ -127,20 +127,20 @@ public class OrderController {
         }
 
         orderService.save(order);
-        return "redirect:/orders/show/" + order.getId();
+        return "redirect:/admin/orders/show/" + order.getId();
     }
 
-    @RequestMapping(value = "/orders/add", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orders/add", method = RequestMethod.GET)
     public String addOrder(ModelMap modelMap) {
         Order order = new Order();
 
         modelMap.addAttribute("orderForm", order);
         modelMap.addAttribute("listOfOrderStatus", OrderStatus.values());
 
-        return "/orders/orderform";
+        return "/admin/orders/orderform";
     }
 
-    @RequestMapping(value = "/orders/{id}/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/orders/{id}/update", method = RequestMethod.GET)
     public String updateOrder(@PathVariable("id") Integer id, ModelMap modelMap) {
         Order order = orderService.findById(id);
         List<Dish> dishes = order.getDishes();
@@ -149,7 +149,7 @@ public class OrderController {
         modelMap.addAttribute("updatedDishes", dishes);
         modelMap.addAttribute("orderForm", order);
 
-        return "/orders/orderform";
+        return "/admin/orders/orderform";
     }
 
 
@@ -161,17 +161,5 @@ public class OrderController {
     @ModelAttribute("dishNames")
     public List<String> getDishNames() {
         return dishService.findAll().stream().map(Dish::getName).collect(Collectors.toList());
-    }
-
-    public void setEmployeeService(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
-
-    public void setDishService(DishService dishService) {
-        this.dishService = dishService;
-    }
-
-    public void setOrderService(OrderService orderService) {
-        this.orderService = orderService;
     }
 }
