@@ -8,15 +8,15 @@
 
 <body>
 
-<div style="width: 80%; margin-left: 20px">
+<div style="width: 60%; margin-left: 20px">
 
     <h1 style="text-align: center; color: #23527c">REST API</h1>
 
 
     <table border="0.2" style="align-items: center" class="table table-striped">
-        <thead style = "color:white;background-color:dimgrey">
+        <thead style = "color:white;background-color:#419641">
         <tr>
-            <th style="text-align: center">Task</th>
+            <th style="text-align: center; width: 40%">Task</th>
             <th style="text-align: center">Get JSON</th>
         </tr>
         </thead>
@@ -31,7 +31,7 @@
         </tr>
 
         <tr>
-            <td>Get Employee by ID</td>
+            <td>Get employee by ID</td>
             <td>
                 <span style="font-weight: bold">enter URL: </span> http://localhost:8030/get-json-employeeById/{id}
                 <br>
@@ -40,7 +40,7 @@
         </tr>
 
         <tr>
-            <td>Find Employee by name</td>
+            <td>Find employee by name</td>
             <td>
                 <span style="font-weight: bold">enter URL: </span> http://localhost:8030/get-json-employeeByName/{firstName}
                 <br>
@@ -49,7 +49,7 @@
         </tr>
 
         <tr>
-            <td>Find Employee by surname</td>
+            <td>Find employee by surname</td>
             <td>
                 <span style="font-weight: bold">enter URL: </span>
                 http://localhost:8030/get-json-employeeBySurname/{lastName}
@@ -59,7 +59,7 @@
         </tr>
 
         <tr>
-            <td>Find Employee by name and surname</td>
+            <td>Find employee by name and surname</td>
             <td><span style="font-weight: bold">enter URL: </span>
                 http://localhost:8030/get-json-employeeByNameAndSurname/{firstName}/{lastName}
                 <br>

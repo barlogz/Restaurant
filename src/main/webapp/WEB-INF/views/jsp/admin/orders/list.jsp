@@ -32,7 +32,7 @@
 
         <c:forEach items="${ordersAttr}" var="order">
             <tr>
-                <td><a href="/orders/show/${order.id}">${order.id}</a></td>
+                <td><a href="/admin/orders/show/${order.id}">${order.id}</a></td>
                 <td>${order.waiter.firstName}</td>
                 <td>${order.tableNumber}</td>
                 <td>${order.orderDate}</td>

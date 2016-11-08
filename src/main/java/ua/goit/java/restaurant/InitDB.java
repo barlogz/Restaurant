@@ -98,7 +98,6 @@ public class InitDB {
         employeeDAO.save(oleg);
 
 
-
         Ingredient dough = new Ingredient();
         dough.setName("dough");
         ingredientDAO.save(dough);
@@ -311,7 +310,6 @@ public class InitDB {
         ingredientDAO.save(kidneyBeans);
 
 
-
         List<Ingredient> margaritaIngredients = new ArrayList<>();
         margaritaIngredients.add(dough);
         margaritaIngredients.add(pizzaCheese);
@@ -357,19 +355,49 @@ public class InitDB {
         caesarSalad.setIngredients(caesarSaladIngredients);
         caesarSalad.setDescription("A selection of lettuces, croutons, parmezan, and our own Caesar salad dressing");
 
+        List<Ingredient> greekSaladIngredients = new ArrayList<>();
+        greekSaladIngredients.add(lettuces);
+        greekSaladIngredients.add(sweetPepper);
+        greekSaladIngredients.add(cucumbers);
+        greekSaladIngredients.add(tomatoes);
+        greekSaladIngredients.add(onion);
+        greekSaladIngredients.add(fetaCheese);
+        greekSaladIngredients.add(greenOlives);
+        greekSaladIngredients.add(lemonJuice);
+        greekSaladIngredients.add(oliveOil);
+        greekSaladIngredients.add(oregano);
+        greekSaladIngredients.add(spices);
+
+        Dish greekSalad = new Dish();
+        greekSalad.setName("GREEK SALAD");
+        greekSalad.setDishCategory(DishCategory.SALADS);
+        greekSalad.setPrice(80);
+        greekSalad.setWeight(220);
+        greekSalad.setIngredients(greekSaladIngredients);
+        greekSalad.setDescription("A selection of lettuces, sweet pepper, cucumbers, tomatoes, onion, Feta cheese, olives, lemon juice, olive oil, oregano and spices");
+
         dishDAO.save(margarita);
         dishDAO.save(fourCheese);
         dishDAO.save(caesarSalad);
+        dishDAO.save(greekSalad);
 
         List<Dish> pizzaDishes = new ArrayList<>();
         pizzaDishes.add(margarita);
-
+        pizzaDishes.add(fourCheese);
 
         Menu pizza = new Menu();
         pizza.setName("PIZZA");
         pizza.setDishes(pizzaDishes);
         menuDAO.save(pizza);
 
+        List<Dish> saladsDishes = new ArrayList<>();
+        saladsDishes.add(caesarSalad);
+        saladsDishes.add(greekSalad);
+
+        Menu salads = new Menu();
+        salads.setName("SALADS");
+        salads.setDishes(saladsDishes);
+        menuDAO.save(salads);
 
         Order order1 = new Order();
         order1.setWaiter(employeeDAO.findByName("Iryna"));

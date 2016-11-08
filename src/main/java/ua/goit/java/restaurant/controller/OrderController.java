@@ -155,7 +155,7 @@ public class OrderController {
 
     @ModelAttribute("waiterNames")
     public List<String> getWaiterNames() {
-        return employeeService.findAll().stream().map(Employee::getFirstName).collect(Collectors.toList());
+        return employeeService.findAllWaiters().stream().map(Employee::getFirstName).collect(Collectors.toList());
     }
 
     @ModelAttribute("dishNames")
